@@ -1,1 +1,552 @@
-test
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>It's Alex Time</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+<body>
+
+<div id="piano">
+	<div class="keys"></div>
+</div>
+
+<div id="controls">
+	<div id="wave">
+		<input type="radio" name="wave" value="sine" id="sine" checked="checked" /><label for="sine">Sine</label>
+		<input type="radio" name="wave" value="square" id="square" /><label for="square">Square</label>
+		<input type="radio" name="wave" value="triangle" id="triangle" /><label for="triangle">Triangle</label>
+		<input type="radio" name="wave" value="sawtooth" id="sawtooth" /><label for="sawtooth">Sawtooth</label>
+	</div>
+	<div id="keyboard">
+		<div class="row">
+			<button class="key text-two-lines text-small" data-keynum="192">~<br />`</button>
+			<button class="key text-two-lines text-small" data-keynum="49">!<br />1</button>
+			<button class="key text-two-lines text-small" data-keynum="50">@<br />2</button>
+			<button class="key text-two-lines text-small" data-keynum="51">#<br />3</button>
+			<button class="key text-two-lines text-small" data-keynum="52">$<br />4</button>
+			<button class="key text-two-lines text-small" data-keynum="53">%<br />5</button>
+			<button class="key text-two-lines text-small" data-keynum="54">^<br />6</button>
+			<button class="key text-two-lines text-small" data-keynum="55">&amp;<br />7</button>
+			<button class="key text-two-lines text-small" data-keynum="56">*<br />8</button>
+			<button class="key text-two-lines text-small" data-keynum="57">(<br />9</button>
+			<button class="key text-two-lines text-small" data-keynum="48">)<br />0</button>
+			<button class="key text-two-lines text-small" data-keynum="189">_<br />-</button>
+			<button class="key text-two-lines text-small" data-keynum="187">+<br />=</button>
+			<button class="key key--long text-small text-bottom text-right" data-keynum="8">delete</button>
+		</div>
+		<div class="row">
+			<button class="key key--long text-bottom text-left text-small" data-keynum="9">tab</button>
+			<button class="key" data-keynum="81">Q</button>
+			<button class="key" data-keynum="87">W</button>
+			<button class="key" data-keynum="69">E</button>
+			<button class="key" data-keynum="82">R</button>
+			<button class="key" data-keynum="84">T</button>
+			<button class="key" data-keynum="89">Y</button>
+			<button class="key" data-keynum="85">U</button>
+			<button class="key" data-keynum="73">I</button>
+			<button class="key" data-keynum="79">O</button>
+			<button class="key" data-keynum="80">P</button>
+			<button class="key text-two-lines text-small" data-keynum="219">{<br />[</button>
+			<button class="key text-two-lines text-small" data-keynum="221">}<br />]</button>
+			<button class="key text-two-lines text-small" data-keynum="220">|<br />\</button>
+		</div>
+		<div class="row">
+			<button class="key key--longer text-bottom text-left text-small" data-keynum="20">caps lock</button>
+			<button class="key" data-keynum="65">A</button>
+			<button class="key" data-keynum="83">S</button>
+			<button class="key" data-keynum="68">D</button>
+			<button class="key" data-keynum="70">F</button>
+			<button class="key" data-keynum="71">G</button>
+			<button class="key" data-keynum="72">H</button>
+			<button class="key" data-keynum="74">J</button>
+			<button class="key" data-keynum="75">K</button>
+			<button class="key" data-keynum="76">L</button>
+			<button class="key text-two-lines text-small" data-keynum="186">:<br />;</button>
+			<button class="key text-two-lines text-small" data-keynum="222">"<br />'</button>
+			<button class="key key--longer text-right text-two-lines text-small" data-keynum="13">
+				<span class="text-smaller">enter</span>
+				<br />return
+			</button>
+		</div>
+		<div class="row">
+			<button class="key key--longest text-bottom text-left text-small">shift</button>
+			<button class="key" data-keynum="90">Z</button>
+			<button class="key" data-keynum="88">X</button>
+			<button class="key" data-keynum="67">C</button>
+			<button class="key" data-keynum="86">V</button>
+			<button class="key" data-keynum="66">B</button>
+			<button class="key" data-keynum="78">N</button>
+			<button class="key" data-keynum="77">M</button>
+			<button class="key text-two-lines text-small" data-keynum="188"><<br />,</button>
+			<button class="key text-two-lines text-small" data-keynum="190">><br />.</button>
+			<button class="key text-two-lines text-small" data-keynum="191">?<br />/</button>
+			<button class="key key--longest text-bottom text-right text-small" data-keynum="16">shift</button>
+		</div>
+		<div class="row">
+			<button class="key text-bottom text-small text-left">fn</button>
+			<button class="key text-bottom text-small text-left">control</button>
+			<button class="key text-small text-left text-two-lines">
+				<span class="text-smaller">alt</span>
+				<br />option
+			</button>
+			<button class="key key--thick text-small text-right text-two-lines">
+				<span class="text-smaller">&#8984;</span>
+				<br />command
+			</button>
+			<button class="key key--space"></button>
+			<button class="key key--thick text-small text-left text-two-lines">
+				<span class="text-smaller">&#8984;</span>
+				<br />command
+			</button>
+			<button class="key text-small text-right text-two-lines">
+				<span class="text-smaller">alt</span>
+				<br />option
+			</button>
+			<button class="key key--arrow key--arrow--up text-smaller">&#9650;</button>
+			<button class="key key--arrow text-smaller">&#9664;</button>
+			<button class="key key--arrow key--arrow--down text-smaller">&#9660;</button>
+			<button class="key key--arrow text-smaller">&#9654;</button>
+		</div>
+	</div>
+</div>
+
+<script>
+	
+	(function () {
+		'use strict';
+		
+		// page load
+		$(function () {
+			
+			window.piano;
+			
+			if (window.AudioContext || window.webkitAudioContext) {
+				window.piano = new Piano();
+				window.piano.init();
+			} else {
+				$('.keys').append("<h2>Sorry, your browser doesn't support awesome things :(</h2>");
+				return;
+			}
+		});
+		
+		var Piano = function() {
+			
+			// holds each note's frequency, oscillators, and gain nodes
+			this.notes = {};
+			
+			// currently selected waveform
+			this.currentWaveForm = 'sine';
+			
+			// keycodes mapped to their note numbers
+			this.keyCodes = {
+				9:		52, // tab
+				49:		53, // 1
+				81:		54, // q
+				50:		55, // 2
+				87:		56, // w
+				69:		57, // e
+				52:		58, // 4
+				82:		59, // r
+				53:		60, // 5
+				84:		61, // t
+				54:		62, // 6
+				89:		63, // y
+				85:		64, // u
+				56:		65, // 8
+				73:		66, // i
+				57:		67, // 9
+				79:		68, // o
+				80:		69, // p
+				189:	70, // -
+				219:	71, // [
+				187:	72, // =
+				221:	73, // ]
+				8:		74, // backspace
+				220:	75, // backslash
+				16:		51, // shift
+				222:	50, // '
+				191:	49, // /
+				186:	48, // ;
+				190:	47, // .
+				76:		46, // l
+				188:	45, // ,
+				77:		44, // m
+				74:		43, // j
+				78:		42, // n
+				72:		41, // h
+				66:		40, // b
+				86:		39, // v
+				70:		38, // f
+				67:		37, // c
+				68:		36, // d
+				88:		35, // x
+				83:		34, // s
+				90:		33, // z
+				65:		32, // a
+			};
+			
+			// appends notes, populates note data
+			this.init = function() {
+				this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+				
+				for (var i=1; i<89; i++) {
+					var black_class = ($.inArray(i%12, [0,2,5,7,10]) > -1) ? ' black' : '';
+					$('#piano .keys').append('<div class="key' + black_class + '" data-note="' + i + '"></div>');
+					this.notes[i] = {
+						freq: this.getFrequency(i),
+						o: null,
+						g: null
+					};
+				}
+				
+				for (var key in this.keyCodes) {
+					$('[data-keynum=' + key + ']').attr('data-note', this.keyCodes[key]);
+				}
+				
+				this.listen();
+			};
+			
+			// attaches event handlers
+			this.listen = function() {
+				var that = this;
+				var mousedown = false;
+				
+				$(window).keydown(function(e) {
+					e.preventDefault();
+					that.pressNote(that.keyCodes[e.keyCode]);
+				});
+								  
+				$(window).keyup(function(e) {
+					that.releaseNote(that.keyCodes[e.keyCode]);
+				});
+								  
+				$('.key').mousedown(function(e) {
+					mousedown = true;
+					that.pressNote(parseInt($(this).data('note')));
+				}).mouseup(function(e) {
+					mousedown = false;
+					that.releaseNote(parseInt($(this).data('note')));
+				}).hover(function(e) {
+					if (mousedown) {
+						that.pressNote(parseInt($(this).data('note')));
+					}
+				}, function(e) {
+					that.releaseNote(parseInt($(this).data('note')));
+				});
+								  
+				$(window).on('mouseup', function(e) {
+					mousedown = false;
+				}).on('blur', function(e) {
+					mousedown = false;
+					that.releaseAllNotes();
+				});
+				
+				$('#controls [name=wave]').click(function(e) {
+					that.setWaveForm($(this).filter(':checked').val());
+				});
+			}
+			
+			// creates oscillator/gain with keynumber's frequency
+			// visually presses note on page
+			this.pressNote = function(keynum) {
+				if (keynum != undefined
+						&& keynum != null
+						&& !this.notes[keynum].o) {
+					
+					var gainNode = this.audioCtx.createGain();
+					gainNode.connect(this.audioCtx.destination);
+					gainNode.gain.value = 0;
+					
+					var oscillator = this.audioCtx.createOscillator();
+					oscillator.type = this.currentWaveForm;
+					oscillator.frequency.value = this.notes[keynum].freq;
+					oscillator.connect(gainNode);
+					oscillator.start(this.audioCtx.currentTime);
+					
+					var now = this.audioCtx.currentTime;
+					gainNode.gain.cancelScheduledValues(now);
+					gainNode.gain.setValueAtTime(0, now);
+					gainNode.gain.linearRampToValueAtTime(0.4, now + 0.01);
+					
+					this.notes[keynum].o = oscillator;
+					this.notes[keynum].g = gainNode;
+					
+					$('[data-note=' + keynum + ']').addClass('pressed');
+				}
+			}
+			
+			// ramps down note's gain, destroys gain and oscillator
+			// visually releases note on page
+			this.releaseNote = function(keynum) {
+				if (keynum != undefined
+						&& keynum != null
+						&& this.notes[keynum].o) {
+					
+					var now = this.audioCtx.currentTime;
+					
+					this.notes[keynum].g.gain.cancelScheduledValues(now);
+					this.notes[keynum].g.gain.setValueAtTime(this.notes[keynum].g.gain.value, now);
+					this.notes[keynum].g.gain.exponentialRampToValueAtTime(0.0001, now + 1);
+					this.notes[keynum].g = null;
+					
+					this.notes[keynum].o.stop(now + 1);
+					this.notes[keynum].o = null;
+					
+					$('[data-note=' + keynum + ']').removeClass('pressed');
+				}
+			};
+			
+			// ramps down all gain, destroys all gain and oscillators
+			// visually releases all notes on page
+			this.releaseAllNotes = function() {
+				var now = this.audioCtx.currentTime;
+				
+				for (var note in this.notes) {
+					if (this.notes[note].o) {
+						this.notes[note].g.gain.cancelScheduledValues(now);
+						this.notes[note].g.gain.setValueAtTime(this.notes[note].g.gain.value, now);
+						this.notes[note].g.gain.exponentialRampToValueAtTime(0.0001, now + 1);
+						this.notes[note].g = null;
+
+						this.notes[note].o.stop(now + 1);
+						this.notes[note].o = null;
+					}
+				}
+				
+				$('.key').removeClass('pressed');
+			};
+			
+			// returns frequency for given piano key number
+			this.getFrequency = function(keynum) {
+				return Math.pow(Math.pow(2,1/12),keynum-49)*440;
+			};
+			
+			// updates the current waveform used when creating oscillators
+			this.setWaveForm = function(form) {
+				if (form == 'square'
+				   		|| form == 'triangle'
+				   		|| form == 'sawtooth') {
+					this.currentWaveForm = form;
+					return;
+				}
+				
+				this.currentWaveForm = 'sine';
+			};
+		}
+	}());
+	
+</script>
+
+<style>
+	body {
+		margin: 0;
+		background-color: #BBA9AB;
+	}
+	
+	#piano {
+		padding-bottom: 5px;
+		background-color: #ddd;
+		box-shadow: 0px 0px 10px -3px #000;
+		border-top: solid 1px #222;
+		border-bottom: solid 1px #222;
+	}
+	
+	#piano .keys {
+		text-align: center;
+		border-top: 30px solid #888;
+	}
+	
+	#piano .key {
+		width: 2vw;
+		height: 12vw;
+		background-color: #fff;
+		display: inline-block;
+		cursor: pointer;
+		margin-right: 1px;
+		vertical-align: top;
+		box-sizing: border-box;
+		border: solid 1px #aaa;
+		border-top: none;
+		margin-right: -1px;
+		position: relative;
+		box-shadow: 3px 3px 15px -8px #000;
+	}
+	
+	#piano .key.black {
+		background-color: #000;
+		border-color: #ddd;
+		margin-left: -0.75vw;
+		height: 7vw;
+		z-index: 2;
+		width: 1.5vw;
+		box-shadow: 3px 3px 10px -3px #000;
+	}
+	
+	#piano .key.pressed {
+		background-color: #ffcccc;
+	}
+	#piano .key.black.pressed {
+		background-color: #800000;
+	}
+	
+	#piano .key.black + .key:not(.black) {
+		margin-left: -0.75vw;
+	}
+	
+	#controls {
+		text-align: center;
+		margin-top: 50px;
+	}
+	
+	#wave input {
+		display: none;
+	}
+	
+	#wave label {
+		font-size: 0;
+		margin: 5px;
+		display: inline-block;
+		cursor: pointer;
+		width: 100px;
+		height: 50px;
+		background-position: center center;
+		background-size: contain;
+		border-radius: 5px;
+		padding-left: 5px;
+		padding-right: 5px;
+		background-color: #eee;
+		border: solid 3px #fff;
+	}
+	
+	#wave input:checked + label {
+		border: solid 3px #ff1234;
+		box-shadow: 0px 0px 9px 0px #ff1234;
+		background-color: #ffcccc;
+		cursor: default;
+	}
+	
+	#sine + label {background-image: url(/assets/sine_wave.png);}
+	#square + label {background-image: url(/assets/square_wave.png);}
+	#triangle + label {background-image: url(/assets/triangular_wave.png);}
+	#sawtooth + label {background-image: url(/assets/sawtooth_wave.png);}
+	
+	#keyboard {
+		max-width: 1000px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 50px;
+		padding-left: 1.8%;
+		padding-right: 1%;
+		padding-top: 1%;
+		padding-bottom: 1%;
+		background-color: #fff;
+		border-radius: 15px;
+		box-shadow: 0 0 10px -3px #666 inset;
+		background: rgba(255,255,255,1);
+		background: -moz-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+		background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(237,237,237,1)));
+		background: -webkit-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+		background: -o-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+		background: -ms-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+		background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=1 );
+	}
+	
+	#keyboard .row {
+		width: 100%;
+		display: table;
+	}
+	
+	#keyboard .key {
+		width: 6%;
+		border: none;
+		height: 55px;
+		margin-right: 0.8%;
+		margin-top: 0.4%;
+		margin-bottom: 0.4%;
+		text-align: center;
+		background-color: #222;
+		color: #fff;
+		font-size: 20px;
+		border-radius: 4px;
+		float: left;
+		overflow: hidden;
+		padding: 5px 10px;
+    	box-shadow: 1px 1px 3px -2px #000;
+	}
+	
+	#keyboard .key.key--thick {
+		width: 8.3%;
+	}
+	
+	#keyboard .key.key--long {
+		width: 10.8%;
+	}
+	
+	#keyboard .key.key--longer {
+		width: 11.8%;
+	}
+	
+	#keyboard .key.key--longest {
+		width: 15.2%;
+	}
+	
+	#keyboard .key.key--space {
+		width: 33.3%;
+	}
+	
+	#keyboard .key.key--arrow {
+		height: 27px;
+		margin-top: 0;
+	}
+	
+	#keyboard .key.key--arrow.key--arrow--up {
+		margin-top: 0.4%;
+		margin-left: 6.8%;
+		margin-right: 6.8%;
+		margin-bottom: 0;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+	
+	#keyboard .key.key--arrow.key--arrow--down {
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+	
+	#keyboard .key:not([data-note]) {
+		background-color: #ddd;
+	}
+	
+	#keyboard .text-small {
+		font-size: 14px;
+	}
+	
+	#keyboard .text-smaller {
+		font-size: 12px;
+	}
+	
+	#keyboard .text-bottom {
+		line-height: 65px;
+	}
+	
+	#keyboard .text-left {
+		text-align: left;
+	}
+	
+	#keyboard .text-right {
+		text-align: right;
+	}
+	
+	#keyboard .text-two-lines {
+    	line-height: 20px;
+	}
+	
+	#keyboard .key.pressed {
+		background-color: #800000;
+	}
+</style>
+
+</body>
+</html>
