@@ -221,13 +221,13 @@
 					that.releaseNote(that.keyCodes[e.keyCode]);
 				});
 								  
-				$('.key').mousedown(function(e) {
+				$('.key').on('mousedown touchstart', function(e) {
 					mousedown = true;
 					that.pressNote(parseInt($(this).data('note')));
-				}).mouseup(function(e) {
+				}).on('mouseup touchend', function(e) {
 					mousedown = false;
 					that.releaseNote(parseInt($(this).data('note')));
-				}).hover(function(e) {
+				}).on('hover touchmove', function(e) {
 					if (mousedown) {
 						that.pressNote(parseInt($(this).data('note')));
 					}
@@ -237,7 +237,7 @@
 								  
 				$(window).on('mouseup', function(e) {
 					mousedown = false;
-				}).on('blur', function(e) {
+				}).on('blur touchend', function(e) {
 					mousedown = false;
 					that.releaseAllNotes();
 				});
