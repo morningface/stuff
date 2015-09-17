@@ -212,37 +212,54 @@
 			// attaches event handlers
 			this.listen = function() {
 				var that = this;
-				var mousedown = false;
 				
-				$(window).keydown(function(e) {
-					e.preventDefault();
-					that.pressNote(that.keyCodes[e.keyCode]);
-				});
-								  
-				$(window).keyup(function(e) {
-					that.releaseNote(that.keyCodes[e.keyCode]);
-				});
-								  
-				$('.key').on('mousedown touchstart', function(e) {
-					mousedown = true;
-					that.pressNote(parseInt($(this).data('note')));
-				}).on('mouseup touchend', function(e) {
-					mousedown = false;
-					that.releaseNote(parseInt($(this).data('note')));
-				}).on('hover touchmove', function(e) {
-					if (mousedown) {
+				if ($('html.no-touchevents').length) {
+					var mousedown = false;
+					
+					$(window).keydown(function(e) {
+						e.preventDefault();
+						that.pressNote(that.keyCodes[e.keyCode]);
+					});
+
+					$(window).keyup(function(e) {
+						that.releaseNote(that.keyCodes[e.keyCode]);
+					});
+
+					$('.key').mousedown(function(e) {
+						mousedown = true;
 						that.pressNote(parseInt($(this).data('note')));
-					}
-				}, function(e) {
-					that.releaseNote(parseInt($(this).data('note')));
-				});
-								  
-				$(window).on('mouseup', function(e) {
-					mousedown = false;
-				}).on('blur touchend', function(e) {
-					mousedown = false;
-					that.releaseAllNotes();
-				});
+					}).mouseup(function(e) {
+						mousedown = false;
+						that.releaseNote(parseInt($(this).data('note')));
+					}).hover(function(e) {
+						if (mousedown) {
+							that.pressNote(parseInt($(this).data('note')));
+						}
+					}, function(e) {
+						that.releaseNote(parseInt($(this).data('note')));
+					});
+
+					$(window).on('mouseup', function(e) {
+						mousedown = false;
+					}).on('blur', function(e) {
+						mousedown = false;
+						that.releaseAllNotes();
+					});
+				} else {
+					var touchdown = false;
+
+					$('.key').on('touchstart', function(e) {
+						touchdown = true;
+						that.pressNote(parseInt($(this).data('note')));
+					}).on('touchend', function(e) {
+						touchdown = false;
+						that.releaseAllNotes();
+					}).on('touchmove', function(e) {
+						if (touchdown) {
+							that.pressNote(parseInt($(e.target).data('note')));
+						}
+					});
+				}
 				
 				$('#controls [name=wave]').click(function(e) {
 					that.setWaveForm($(this).filter(':checked').val());
