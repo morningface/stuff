@@ -254,10 +254,6 @@
 					}).on('touchend', function(e) {
 						touchdown = false;
 						that.releaseAllNotes();
-					}).on('touchmove', function(e) {
-						if (touchdown) {
-							that.pressNote(parseInt($(document.elementFromPoint(e.clientX, e.clientY)).data('note')));
-						}
 					});
 				}
 				
