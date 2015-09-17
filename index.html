@@ -256,7 +256,7 @@
 						that.releaseAllNotes();
 					}).on('touchmove', function(e) {
 						if (touchdown) {
-							that.pressNote(parseInt($(e.target).data('note')));
+							that.pressNote(parseInt($(document.elementFromPoint(e.clientX, e.clientY)).data('note')));
 						}
 					});
 				}
@@ -271,6 +271,7 @@
 			this.pressNote = function(keynum) {
 				if (keynum != undefined
 						&& keynum != null
+						&& this.notes[keynum]
 						&& !this.notes[keynum].o) {
 					
 					var gainNode = this.audioCtx.createGain();
