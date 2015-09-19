@@ -370,8 +370,7 @@
 			this.createSelfDecayingNote = function(keynum) {
 				if (keynum != undefined
 						&& keynum != null
-						&& this.notes[keynum]
-						&& !this.notes[keynum].o) {
+						&& this.notes[keynum]) {
 
 					var gainNode = this.audioCtx.createGain();
 					gainNode.connect(this.audioCtx.destination);
@@ -400,7 +399,7 @@
 
 						oscillator.stop(now + 1);
 						oscillator = null;
-					}, 300);
+					}, 400);
 				}
 			};
 			
