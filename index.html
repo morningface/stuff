@@ -20,6 +20,9 @@
 		<input type="radio" name="wave" value="triangle" id="triangle" /><label for="triangle">Triangle</label>
 		<input type="radio" name="wave" value="sawtooth" id="sawtooth" /><label for="sawtooth">Sawtooth</label>
 	</div>
+	<div id="arpeggio">
+		<input type="checkbox" name="arpeggio" value="true" id="arpeggio-checkbox" /><label for="arpeggio-checkbox">Arpeggiate?</label>
+	</div>
 	<div id="keyboard">
 		<div class="row">
 			<button class="key text-two-lines text-small" data-keynum="192">~<br />`</button>
@@ -139,6 +142,9 @@
 			
 			// currently selected waveform
 			this.currentWaveForm = 'sine';
+			
+			// arpeggiation
+			this.arpeggiation = false;
 			
 			// keycodes mapped to their note numbers
 			this.keyCodes = {
@@ -260,6 +266,10 @@
 				$('#controls [name=wave]').click(function(e) {
 					that.setWaveForm($(this).filter(':checked').val());
 				});
+				
+				$('#controls [name=arpeggio]').change(function(e) {
+					that.setArpeggiation($(this).is(':checked'));
+				});
 			}
 			
 			// creates oscillator/gain with keynumber's frequency
@@ -289,6 +299,9 @@
 					this.notes[keynum].g = gainNode;
 					
 					$('[data-note=' + keynum + ']').addClass('pressed');
+					
+					if (this.arpeggiation)
+						this.arpeggiate(keynum);
 				}
 			}
 			
@@ -333,6 +346,64 @@
 				$('.key').removeClass('pressed');
 			};
 			
+			// trigger note creation for arpeggio harmony
+			this.arpeggiate = function(keynum) {
+				
+				var arpeggioNotes = [keynum+4, keynum+7, keynum+12,
+									 keynum+16, keynum+19, keynum+24,
+									 keynum+28, keynum+31, keynum+28,
+									 keynum+24, keynum+19, keynum+16,
+									 keynum+12, keynum+7, keynum+4, keynum];
+				var i=1, that = this;
+				
+				this.createSelfDecayingNote(arpeggioNotes[0]);
+				var interval = setInterval(function() {
+					if (that.notes[keynum].o) {
+						that.createSelfDecayingNote(arpeggioNotes[i]);
+						i = i == arpeggioNotes.length - 1 ? 0 : i+1;
+					} else {
+						clearInterval(interval);
+					}
+				}, 100);
+			};
+			
+			this.createSelfDecayingNote = function(keynum) {
+				if (keynum != undefined
+						&& keynum != null
+						&& this.notes[keynum]
+						&& !this.notes[keynum].o) {
+
+					var gainNode = this.audioCtx.createGain();
+					gainNode.connect(this.audioCtx.destination);
+					gainNode.gain.value = 0;
+
+					var oscillator = this.audioCtx.createOscillator();
+					oscillator.type = this.currentWaveForm;
+					oscillator.frequency.value = this.notes[keynum].freq;
+					oscillator.connect(gainNode);
+					oscillator.start(this.audioCtx.currentTime);
+					console.log(gainNode);
+
+
+					var now = this.audioCtx.currentTime + 0.3;
+					gainNode.gain.cancelScheduledValues(now);
+					gainNode.gain.setValueAtTime(0, now);
+					gainNode.gain.linearRampToValueAtTime(0.4, now + 0.01);
+
+					var that = this;
+					setTimeout(function() {
+						var now = that.audioCtx.currentTime;
+						gainNode.gain.cancelScheduledValues(now);
+						gainNode.gain.setValueAtTime(gainNode.gain.value, now);
+						gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 1);
+						gainNode = null;
+
+						oscillator.stop(now + 1);
+						oscillator = null;
+					}, 300);
+				}
+			};
+			
 			// returns frequency for given piano key number
 			this.getFrequency = function(keynum) {
 				return Math.pow(Math.pow(2,1/12),keynum-49)*440;
@@ -348,6 +419,11 @@
 				}
 				
 				this.currentWaveForm = 'sine';
+			};
+			
+			// updates the current waveform used when creating oscillators
+			this.setArpeggiation = function(state) {
+				this.arpeggiation = state;
 			};
 		}
 	}());
