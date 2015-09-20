@@ -342,7 +342,8 @@
 			this.releaseNote = function(keynum) {
 				if (keynum != undefined
 						&& keynum != null
-						&& (!this.notes[keynum] ||  !this.notes[keynum].o)
+						&& this.notes[keynum] != null
+						&& this.notes[keynum].o != null
 				   ) {
 					
 					var now = this.audioCtx.currentTime;
