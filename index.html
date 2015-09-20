@@ -28,6 +28,8 @@
 				<input type="radio" name="arpeggio" value="" id="arpeggiation-none" checked="checked" /><label for="arpeggiation-none">None</label>
 				<input type="radio" name="arpeggio" value="major" id="arpeggiation-major" /><label for="arpeggiation-major">Major</label>
 				<input type="radio" name="arpeggio" value="minor" id="arpeggiation-minor" /><label for="arpeggiation-minor">Minor</label>
+				<input type="radio" name="arpeggio" value="gradualMajor" id="arpeggiation-gradualMajor" /><label for="arpeggiation-gradualMajor">Gradual Major</label>
+				<input type="radio" name="arpeggio" value="gradualMinor" id="arpeggiation-gradualMinor" /><label for="arpeggiation-gradualMinor">Gradual Minor</label>
 			</div><!--
 		--></div><!--
 	--></div>
@@ -372,6 +374,20 @@
 									 keynum+24, keynum+19, keynum+15,
 									 keynum+12, keynum+7, keynum+3, keynum];
 				
+				var gradualMajorProgression = [keynum+4, keynum+7, keynum+4, keynum+7, keynum+12,
+									 keynum+7, keynum+12, keynum+16, keynum+12, keynum+16, keynum+19,
+									 keynum+16, keynum+19, keynum+24,
+									 keynum+19, keynum+16, keynum+19, keynum+16, keynum+12, keynum+16,
+									 keynum+12, keynum+7, keynum+12, keynum+7, keynum+4,
+									 keynum+7, keynum+4, keynum];
+				
+				var gradualMinorProgression = [keynum+3, keynum+7, keynum+3, keynum+7, keynum+12,
+									 keynum+7, keynum+12, keynum+15, keynum+12, keynum+15, keynum+19,
+									 keynum+15, keynum+19, keynum+24,
+									 keynum+19, keynum+15, keynum+19, keynum+15, keynum+12, keynum+15,
+									 keynum+12, keynum+7, keynum+12, keynum+7, keynum+3,
+									 keynum+7, keynum+3, keynum];
+				
 				var i=0, that = this;
 				
 				var interval = setInterval(function() {
@@ -385,6 +401,12 @@
 								break;
 							case 'minor':
 								progression = minorProgression;
+								break;
+							case 'gradualMajor':
+								progression = gradualMajorProgression;
+								break;
+							case 'gradualMinor':
+								progression = gradualMinorProgression;
 								break;
 							default:
 								progression = [];
@@ -581,7 +603,7 @@
 		margin: 5px;
 		display: inline-block;
 		cursor: pointer;
-		width: 45px;
+		min-width: 45px;
 		height: 30px;
 		line-height: 30px;
 		background-position: center center;
