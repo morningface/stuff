@@ -6,113 +6,122 @@
 	<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0" />
 	<script src="/stuff/assets/jquery-1.11.2.js"></script>
 	<script src="/stuff/assets/modernizr-v3.0.0.min.js"></script>
+	<link href='/stuff/assets/reset.css' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
-<div id="piano">
+<div id="piano"><!--
+	--><div id="controls"><!--
+		--><div id="wave" class="control"><!--
+			--><h3>Wave Form:</h3><!--
+			--><div class="options">
+				<input type="radio" name="wave" value="sine" id="sine" /><label for="sine">Sine</label>
+				<input type="radio" name="wave" value="square" id="square" /><label for="square">Square</label>
+				<input type="radio" name="wave" value="triangle" id="triangle" checked="checked" /><label for="triangle">Triangle</label>
+				<input type="radio" name="wave" value="sawtooth" id="sawtooth" /><label for="sawtooth">Sawtooth</label>
+			</div><!--
+		--></div><!--
+		--><div id="arpeggio" class="control"><!--
+			--><h3>Arpeggiation:</h3><!--
+			--><div class="options">
+				<input type="radio" name="arpeggio" value="" id="arpeggiation-none" checked="checked" /><label for="arpeggiation-none">None</label>
+				<input type="radio" name="arpeggio" value="major" id="arpeggiation-major" /><label for="arpeggiation-major">Major</label>
+				<input type="radio" name="arpeggio" value="minor" id="arpeggiation-minor" /><label for="arpeggiation-minor">Minor</label>
+			</div><!--
+		--></div><!--
+	--></div>
 	<div class="keys"></div>
 </div>
-
-<div id="controls">
-	<div id="wave">
-		<input type="radio" name="wave" value="sine" id="sine" checked="checked" /><label for="sine">Sine</label>
-		<input type="radio" name="wave" value="square" id="square" /><label for="square">Square</label>
-		<input type="radio" name="wave" value="triangle" id="triangle" /><label for="triangle">Triangle</label>
-		<input type="radio" name="wave" value="sawtooth" id="sawtooth" /><label for="sawtooth">Sawtooth</label>
+<div id="keyboard">
+	<div class="row">
+		<button class="key text-two-lines text-small" data-keynum="192">~<br />`</button>
+		<button class="key text-two-lines text-small" data-keynum="49">!<br />1</button>
+		<button class="key text-two-lines text-small" data-keynum="50">@<br />2</button>
+		<button class="key text-two-lines text-small" data-keynum="51">#<br />3</button>
+		<button class="key text-two-lines text-small" data-keynum="52">$<br />4</button>
+		<button class="key text-two-lines text-small" data-keynum="53">%<br />5</button>
+		<button class="key text-two-lines text-small" data-keynum="54">^<br />6</button>
+		<button class="key text-two-lines text-small" data-keynum="55">&amp;<br />7</button>
+		<button class="key text-two-lines text-small" data-keynum="56">*<br />8</button>
+		<button class="key text-two-lines text-small" data-keynum="57">(<br />9</button>
+		<button class="key text-two-lines text-small" data-keynum="48">)<br />0</button>
+		<button class="key text-two-lines text-small" data-keynum="189">_<br />-</button>
+		<button class="key text-two-lines text-small" data-keynum="187">+<br />=</button>
+		<button class="key key--long text-small text-bottom text-right" data-keynum="8">delete</button>
 	</div>
-	<div id="arpeggio">
-		<input type="checkbox" name="arpeggio" value="true" id="arpeggio-checkbox" /><label for="arpeggio-checkbox">Arpeggiate?</label>
+	<div class="row">
+		<button class="key key--long text-bottom text-left text-small" data-keynum="9">tab</button>
+		<button class="key" data-keynum="81">Q</button>
+		<button class="key" data-keynum="87">W</button>
+		<button class="key" data-keynum="69">E</button>
+		<button class="key" data-keynum="82">R</button>
+		<button class="key" data-keynum="84">T</button>
+		<button class="key" data-keynum="89">Y</button>
+		<button class="key" data-keynum="85">U</button>
+		<button class="key" data-keynum="73">I</button>
+		<button class="key" data-keynum="79">O</button>
+		<button class="key" data-keynum="80">P</button>
+		<button class="key text-two-lines text-small" data-keynum="219">{<br />[</button>
+		<button class="key text-two-lines text-small" data-keynum="221">}<br />]</button>
+		<button class="key text-two-lines text-small" data-keynum="220">|<br />\</button>
 	</div>
-	<div id="keyboard">
-		<div class="row">
-			<button class="key text-two-lines text-small" data-keynum="192">~<br />`</button>
-			<button class="key text-two-lines text-small" data-keynum="49">!<br />1</button>
-			<button class="key text-two-lines text-small" data-keynum="50">@<br />2</button>
-			<button class="key text-two-lines text-small" data-keynum="51">#<br />3</button>
-			<button class="key text-two-lines text-small" data-keynum="52">$<br />4</button>
-			<button class="key text-two-lines text-small" data-keynum="53">%<br />5</button>
-			<button class="key text-two-lines text-small" data-keynum="54">^<br />6</button>
-			<button class="key text-two-lines text-small" data-keynum="55">&amp;<br />7</button>
-			<button class="key text-two-lines text-small" data-keynum="56">*<br />8</button>
-			<button class="key text-two-lines text-small" data-keynum="57">(<br />9</button>
-			<button class="key text-two-lines text-small" data-keynum="48">)<br />0</button>
-			<button class="key text-two-lines text-small" data-keynum="189">_<br />-</button>
-			<button class="key text-two-lines text-small" data-keynum="187">+<br />=</button>
-			<button class="key key--long text-small text-bottom text-right" data-keynum="8">delete</button>
-		</div>
-		<div class="row">
-			<button class="key key--long text-bottom text-left text-small" data-keynum="9">tab</button>
-			<button class="key" data-keynum="81">Q</button>
-			<button class="key" data-keynum="87">W</button>
-			<button class="key" data-keynum="69">E</button>
-			<button class="key" data-keynum="82">R</button>
-			<button class="key" data-keynum="84">T</button>
-			<button class="key" data-keynum="89">Y</button>
-			<button class="key" data-keynum="85">U</button>
-			<button class="key" data-keynum="73">I</button>
-			<button class="key" data-keynum="79">O</button>
-			<button class="key" data-keynum="80">P</button>
-			<button class="key text-two-lines text-small" data-keynum="219">{<br />[</button>
-			<button class="key text-two-lines text-small" data-keynum="221">}<br />]</button>
-			<button class="key text-two-lines text-small" data-keynum="220">|<br />\</button>
-		</div>
-		<div class="row">
-			<button class="key key--longer text-bottom text-left text-small" data-keynum="20">caps lock</button>
-			<button class="key" data-keynum="65">A</button>
-			<button class="key" data-keynum="83">S</button>
-			<button class="key" data-keynum="68">D</button>
-			<button class="key" data-keynum="70">F</button>
-			<button class="key" data-keynum="71">G</button>
-			<button class="key" data-keynum="72">H</button>
-			<button class="key" data-keynum="74">J</button>
-			<button class="key" data-keynum="75">K</button>
-			<button class="key" data-keynum="76">L</button>
-			<button class="key text-two-lines text-small" data-keynum="186">:<br />;</button>
-			<button class="key text-two-lines text-small" data-keynum="222">"<br />'</button>
-			<button class="key key--longer text-right text-two-lines text-small" data-keynum="13">
-				<span class="text-smaller">enter</span>
-				<br />return
-			</button>
-		</div>
-		<div class="row">
-			<button class="key key--longest text-bottom text-left text-small">shift</button>
-			<button class="key" data-keynum="90">Z</button>
-			<button class="key" data-keynum="88">X</button>
-			<button class="key" data-keynum="67">C</button>
-			<button class="key" data-keynum="86">V</button>
-			<button class="key" data-keynum="66">B</button>
-			<button class="key" data-keynum="78">N</button>
-			<button class="key" data-keynum="77">M</button>
-			<button class="key text-two-lines text-small" data-keynum="188"><<br />,</button>
-			<button class="key text-two-lines text-small" data-keynum="190">><br />.</button>
-			<button class="key text-two-lines text-small" data-keynum="191">?<br />/</button>
-			<button class="key key--longest text-bottom text-right text-small" data-keynum="16">shift</button>
-		</div>
-		<div class="row">
-			<button class="key text-bottom text-small text-left">fn</button>
-			<button class="key text-bottom text-small text-left">control</button>
-			<button class="key text-small text-left text-two-lines">
-				<span class="text-smaller">alt</span>
-				<br />option
-			</button>
-			<button class="key key--thick text-small text-right text-two-lines">
-				<span class="text-smaller">&#8984;</span>
-				<br />command
-			</button>
-			<button class="key key--space"></button>
-			<button class="key key--thick text-small text-left text-two-lines">
-				<span class="text-smaller">&#8984;</span>
-				<br />command
-			</button>
-			<button class="key text-small text-right text-two-lines">
-				<span class="text-smaller">alt</span>
-				<br />option
-			</button>
-			<button class="key key--arrow key--arrow--up text-smaller">&#9650;</button>
-			<button class="key key--arrow text-smaller">&#9664;</button>
-			<button class="key key--arrow key--arrow--down text-smaller">&#9660;</button>
-			<button class="key key--arrow text-smaller">&#9654;</button>
-		</div>
+	<div class="row">
+		<button class="key key--longer text-bottom text-left text-small" data-keynum="20">caps lock</button>
+		<button class="key" data-keynum="65">A</button>
+		<button class="key" data-keynum="83">S</button>
+		<button class="key" data-keynum="68">D</button>
+		<button class="key" data-keynum="70">F</button>
+		<button class="key" data-keynum="71">G</button>
+		<button class="key" data-keynum="72">H</button>
+		<button class="key" data-keynum="74">J</button>
+		<button class="key" data-keynum="75">K</button>
+		<button class="key" data-keynum="76">L</button>
+		<button class="key text-two-lines text-small" data-keynum="186">:<br />;</button>
+		<button class="key text-two-lines text-small" data-keynum="222">"<br />'</button>
+		<button class="key key--longer text-right text-two-lines text-small" data-keynum="13">
+			<span class="text-smaller">enter</span>
+			<br />return
+		</button>
+	</div>
+	<div class="row">
+		<button class="key key--longest text-bottom text-left text-small">shift</button>
+		<button class="key" data-keynum="90">Z</button>
+		<button class="key" data-keynum="88">X</button>
+		<button class="key" data-keynum="67">C</button>
+		<button class="key" data-keynum="86">V</button>
+		<button class="key" data-keynum="66">B</button>
+		<button class="key" data-keynum="78">N</button>
+		<button class="key" data-keynum="77">M</button>
+		<button class="key text-two-lines text-small" data-keynum="188"><<br />,</button>
+		<button class="key text-two-lines text-small" data-keynum="190">><br />.</button>
+		<button class="key text-two-lines text-small" data-keynum="191">?<br />/</button>
+		<button class="key key--longest text-bottom text-right text-small" data-keynum="16">shift</button>
+	</div>
+	<div class="row">
+		<button class="key text-bottom text-small text-left">fn</button>
+		<button class="key text-bottom text-small text-left">control</button>
+		<button class="key text-small text-left text-two-lines">
+			<span class="text-smaller">alt</span>
+			<br />option
+		</button>
+		<button class="key key--thick text-small text-right text-two-lines">
+			<span class="text-smaller">&#8984;</span>
+			<br />command
+		</button>
+		<button class="key key--space"></button>
+		<button class="key key--thick text-small text-left text-two-lines">
+			<span class="text-smaller">&#8984;</span>
+			<br />command
+		</button>
+		<button class="key text-small text-right text-two-lines">
+			<span class="text-smaller">alt</span>
+			<br />option
+		</button>
+		<button class="key key--arrow key--arrow--up text-smaller">&#9650;</button>
+		<button class="key key--arrow text-smaller">&#9664;</button>
+		<button class="key key--arrow key--arrow--down text-smaller">&#9660;</button>
+		<button class="key key--arrow text-smaller">&#9654;</button>
 	</div>
 </div>
 
@@ -140,11 +149,14 @@
 			// holds each note's frequency, oscillators, and gain nodes
 			this.notes = {};
 			
+			// max gain value
+			this.maxVolume = 0.5;
+			
 			// currently selected waveform
-			this.currentWaveForm = 'sine';
+			this.currentWaveForm = 'triangle';
 			
 			// arpeggiation
-			this.arpeggiation = false;
+			this.arpeggiation = '';
 			
 			// keycodes mapped to their note numbers
 			this.keyCodes = {
@@ -268,7 +280,7 @@
 				});
 				
 				$('#controls [name=arpeggio]').change(function(e) {
-					that.setArpeggiation($(this).is(':checked'));
+					that.setArpeggiation($(this).filter(':checked').val());
 				});
 			}
 			
@@ -293,15 +305,14 @@
 					var now = this.audioCtx.currentTime;
 					gainNode.gain.cancelScheduledValues(now);
 					gainNode.gain.setValueAtTime(0, now);
-					gainNode.gain.linearRampToValueAtTime(0.4, now + 0.01);
+					gainNode.gain.linearRampToValueAtTime(this.maxVolume, now + 0.01);
 					
 					this.notes[keynum].o = oscillator;
 					this.notes[keynum].g = gainNode;
 					
 					$('[data-note=' + keynum + ']').addClass('pressed');
 					
-					if (this.arpeggiation)
-						this.arpeggiate(keynum);
+					this.arpeggiate(keynum);
 				}
 			}
 			
@@ -349,18 +360,39 @@
 			// trigger note creation for arpeggio harmony
 			this.arpeggiate = function(keynum) {
 				
-				var arpeggioNotes = [keynum+4, keynum+7, keynum+12,
+				var majorProgression = [keynum+4, keynum+7, keynum+12,
 									 keynum+16, keynum+19, keynum+24,
 									 keynum+28, keynum+31, keynum+28,
 									 keynum+24, keynum+19, keynum+16,
 									 keynum+12, keynum+7, keynum+4, keynum];
-				var i=1, that = this;
 				
-				this.createSelfDecayingNote(arpeggioNotes[0]);
+				var minorProgression = [keynum+3, keynum+7, keynum+12,
+									 keynum+15, keynum+19, keynum+24,
+									 keynum+27, keynum+31, keynum+27,
+									 keynum+24, keynum+19, keynum+15,
+									 keynum+12, keynum+7, keynum+3, keynum];
+				
+				var i=0, that = this;
+				
 				var interval = setInterval(function() {
+					
 					if (that.notes[keynum].o) {
-						that.createSelfDecayingNote(arpeggioNotes[i]);
-						i = i == arpeggioNotes.length - 1 ? 0 : i+1;
+						var progression;
+						
+						switch (that.arpeggiation) {
+							case 'major':
+								progression = majorProgression;
+								break;
+							case 'minor':
+								progression = minorProgression;
+								break;
+							default:
+								progression = [];
+								break;
+						}
+						
+						that.createSelfDecayingNote(progression[i]);
+						i = i >= progression.length - 1 ? 0 : i+1;
 					} else {
 						clearInterval(interval);
 					}
@@ -381,13 +413,11 @@
 					oscillator.frequency.value = this.notes[keynum].freq;
 					oscillator.connect(gainNode);
 					oscillator.start(this.audioCtx.currentTime);
-					console.log(gainNode);
 
-
-					var now = this.audioCtx.currentTime + 0.3;
+					var now = this.audioCtx.currentTime;
 					gainNode.gain.cancelScheduledValues(now);
 					gainNode.gain.setValueAtTime(0, now);
-					gainNode.gain.linearRampToValueAtTime(0.4, now + 0.01);
+					gainNode.gain.linearRampToValueAtTime(this.maxVolume, now + 0.01);
 
 					var that = this;
 					setTimeout(function() {
@@ -399,7 +429,7 @@
 
 						oscillator.stop(now + 1);
 						oscillator = null;
-					}, 400);
+					}, 100);
 				}
 			};
 			
@@ -432,7 +462,19 @@
 <style>
 	body {
 		margin: 0;
-		background-color: #BBA9AB;
+		background: rgba(51,180,255,1);
+		background: -moz-linear-gradient(left, rgba(51,180,255,1) 0%, rgba(0,152,240,1) 100%);
+		background: -webkit-gradient(left top, right top, color-stop(0%, rgba(51,180,255,1)), color-stop(100%, rgba(0,152,240,1)));
+		background: -webkit-linear-gradient(left, rgba(51,180,255,1) 0%, rgba(0,152,240,1) 100%);
+		background: -o-linear-gradient(left, rgba(51,180,255,1) 0%, rgba(0,152,240,1) 100%);
+		background: -ms-linear-gradient(left, rgba(51,180,255,1) 0%, rgba(0,152,240,1) 100%);
+		background: linear-gradient(to right, rgba(51,180,255,1) 0%, rgba(0,152,240,1) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33b4ff', endColorstr='#0098f0', GradientType=1 );
+		min-height: 100vh;
+		padding-bottom: 375px;
+		box-sizing: border-box;
+		position: relative;
+		font-family: Lato;
 	}
 	
 	#piano {
@@ -451,7 +493,7 @@
 	
 	#piano .keys {
 		text-align: center;
-		border-top: 30px solid #888;
+		position: relative;
 	}
 	
 	#piano .key {
@@ -481,10 +523,24 @@
 	}
 	
 	#piano .key.pressed {
-		background-color: #ffcccc;
+		background: rgba(255,140,0,1);
+		background: -moz-linear-gradient(left, rgba(255,140,0,1) 0%, rgba(224,119,0,1) 100%);
+		background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,140,0,1)), color-stop(100%, rgba(224,119,0,1)));
+		background: -webkit-linear-gradient(left, rgba(255,140,0,1) 0%, rgba(224,119,0,1) 100%);
+		background: -o-linear-gradient(left, rgba(255,140,0,1) 0%, rgba(224,119,0,1) 100%);
+		background: -ms-linear-gradient(left, rgba(255,140,0,1) 0%, rgba(224,119,0,1) 100%);
+		background: linear-gradient(to right, rgba(255,140,0,1) 0%, rgba(224,119,0,1) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff8c00', endColorstr='#e07700', GradientType=1 );
 	}
 	#piano .key.black.pressed {
-		background-color: #800000;
+		background: rgba(255,140,0,1);
+		background: -moz-linear-gradient(left, rgba(255,140,0,1) 0%, rgba(224,119,0,1) 100%);
+		background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,140,0,1)), color-stop(100%, rgba(224,119,0,1)));
+		background: -webkit-linear-gradient(left, rgba(255,140,0,1) 0%, rgba(224,119,0,1) 100%);
+		background: -o-linear-gradient(left, rgba(255,140,0,1) 0%, rgba(224,119,0,1) 100%);
+		background: -ms-linear-gradient(left, rgba(255,140,0,1) 0%, rgba(224,119,0,1) 100%);
+		background: linear-gradient(to right, rgba(255,140,0,1) 0%, rgba(224,119,0,1) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff8c00', endColorstr='#e07700', GradientType=1 );
 	}
 	
 	#piano .key.black + .key:not(.black) {
@@ -493,34 +549,71 @@
 	
 	#controls {
 		text-align: center;
-		margin-top: 50px;
+		background: rgba(255,62,62,1);
+		background: -moz-linear-gradient(left, rgba(255,62,62,1) 0%, rgba(204,57,57,1) 100%);
+		background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,62,62,1)), color-stop(100%, rgba(204,57,57,1)));
+		background: -webkit-linear-gradient(left, rgba(255,62,62,1) 0%, rgba(204,57,57,1) 100%);
+		background: -o-linear-gradient(left, rgba(255,62,62,1) 0%, rgba(204,57,57,1) 100%);
+		background: -ms-linear-gradient(left, rgba(255,62,62,1) 0%, rgba(204,57,57,1) 100%);
+		background: linear-gradient(to right, rgba(255,62,62,1) 0%, rgba(204,57,57,1) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff3e3e', endColorstr='#cc3939', GradientType=1 );
+		box-shadow: 0px 0px 10px 0px #000;
+		z-index: 1;
+		position: relative;
+		border-bottom: 5px solid #444;
 	}
 	
-	#wave input {
+	#controls .control {
+	    display: inline-block;
+		margin: 10px 30px;
+		vertical-align: middle;
+		text-align: center;
+	}
+	
+	#controls .control h3 {
+		display: inline-block;
+		line-height: 30px;
+		margin: 5px;
+		vertical-align: middle;
+		color: #fff;
+		font-size: 18px;
+	}
+	
+	#controls .control .options {
+		display: inline-block;
+		vertical-align: middle;
+	}
+	
+	input[type=radio] {
 		display: none;
 	}
 	
-	#wave label {
-		font-size: 0;
+	input[type=radio] + label {
 		margin: 5px;
 		display: inline-block;
 		cursor: pointer;
-		width: 100px;
-		height: 50px;
+		width: 60px;
+		height: 30px;
+		line-height: 30px;
 		background-position: center center;
 		background-size: contain;
-		border-radius: 5px;
+		border-radius: 3px;
 		padding-left: 5px;
 		padding-right: 5px;
 		background-color: #eee;
 		border: solid 3px #fff;
+		font-size: 14px;
 	}
 	
-	#wave input:checked + label {
-		border: solid 3px #ff1234;
-		box-shadow: 0px 0px 9px 0px #ff1234;
-		background-color: #ffcccc;
+	input[type=radio]:checked + label {
+		border: solid 3px #ffe027;
+		box-shadow: 0px 0px 9px 0px #ffe027;
+		background-color: #ffe027;
 		cursor: default;
+	}
+	
+	#wave input + label {
+		font-size: 0;
 	}
 	
 	#sine + label {background-image: url(/stuff/assets/sine_wave.png);}
@@ -539,7 +632,7 @@
 		padding-bottom: 1%;
 		background-color: #fff;
 		border-radius: 15px;
-		box-shadow: 0 0 10px -3px #666 inset;
+		box-shadow: 0 0 10px 0 #000 inset;
 		background: rgba(255,255,255,1);
 		background: -moz-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
 		background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(237,237,237,1)));
@@ -554,6 +647,12 @@
 		-moz-user-select: none;
 		-ms-user-select: none;
 		user-select: none;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
 	}
 	
 	#keyboard .row {
@@ -647,7 +746,14 @@
 	}
 	
 	#keyboard .key.pressed {
-		background-color: #800000;
+		background: rgba(255,140,0,1);
+		background: -moz-linear-gradient(left, rgba(255,140,0,1) 0%, rgba(224,119,0,1) 100%);
+		background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,140,0,1)), color-stop(100%, rgba(224,119,0,1)));
+		background: -webkit-linear-gradient(left, rgba(255,140,0,1) 0%, rgba(224,119,0,1) 100%);
+		background: -o-linear-gradient(left, rgba(255,140,0,1) 0%, rgba(224,119,0,1) 100%);
+		background: -ms-linear-gradient(left, rgba(255,140,0,1) 0%, rgba(224,119,0,1) 100%);
+		background: linear-gradient(to right, rgba(255,140,0,1) 0%, rgba(224,119,0,1) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff8c00', endColorstr='#e07700', GradientType=1 );
 	}
 </style>
 
