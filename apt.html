@@ -23,15 +23,18 @@
 	<div id="bathroom"></div>
 	<div id="bathroom-door" class="door rotated"></div>
 	<div id="main-closet-door" class="door rotated"></div>
-	<div id="kitchen-counters"></div>
-	<div id="kitchen-table" class="object">table</div>
-	<div id="sofa" class="object">sofa</div>
-	<div id="bed" class="object">bed</div>
-	<div id="dresser" class="object">dresser</div>
-	<div id="tv-stand" class="object">tv stand</div>
-	<div id="cube" class="object rotated">cube</div>
-	<div id="book-shelf-one" class="book-shelf object rotated">book shelf</div>
-	<div id="book-shelf-two" class="book-shelf object rotated">book shelf</div>
+	<div id="kitchen-counters">kitchen counters</div>
+	<div id="kitchen-table" class="object draggable">table</div>
+	<div id="sofa" class="object draggable">sofa</div>
+	<div id="bed" class="object draggable">bed</div>
+	<div id="dresser" class="object draggable">dresser</div>
+	<div id="tv-stand" class="object draggable">tv stand</div>
+	<div id="cube" class="object draggable rotated">cube</div>
+	<div id="book-shelf-one" class="book-shelf object draggable rotated">book shelf</div>
+	<div id="book-shelf-two" class="book-shelf object draggable rotated">book shelf</div>
+	<div id="washer" class="object">washer</div>
+	<div id="dryer" class="object">dryer</div>
+	<div id="tub" class="object">bath tub</div>
 </div>
 
 <style>
@@ -76,21 +79,28 @@
 	}
 	
 	#apartment .object {
-		cursor: pointer;
-		z-index: 5;
+		z-index: 4;
 		font-size: 12px;
 		text-align: center;
-		background-color: #ff6c00;
-		color: #fff;
-		text-shadow: 1px 1px 0px #000;
-		border: dashed 10px #ff6c00;
+		background-color: #f9d6bc;
+		color: #000;
+		text-shadow: 1px 1px 0px #fff;
 		box-sizing: border-box;
 		border-radius: 3px;
-		box-sizing: border-box;
 		line-height: 10px;
 		transition: all 0.2s ease-in-out;
+		border: solid 10px #f9d6bc;
 	}
-	#apartment .object:active {
+	
+	#apartment .draggable {
+		color: #fff;
+		text-shadow: 1px 1px 0px #000;
+		cursor: pointer;
+		z-index: 5;
+		background-color: #ff6c00;
+		border: dashed 10px #ff6c00;
+	}
+	#apartment .draggable:active {
 		background-color: #ff9a50 !important;
 	}
 	
@@ -152,11 +162,11 @@
 	
 	#bathroom-door {
 		top: 181px;
-		left: 445px;
+		left: 475px;
 	}
 	
 	#room-closet {
-		width: 118px;
+		width: 135px;
 		height: 70px;
 		top: 0;
 		left: 306px;
@@ -179,7 +189,12 @@
 		right: 380px;
 		width: 200px;
 		height: 204px;
-		background-color: #ddd;
+		background-color: #f9d6bc;
+		font-size: 12px;
+		line-height: 35px;
+		text-indent: 30px;
+		color: #000;
+		text-shadow: 1px 1px 0px #fff;
 	}
 	
 	#kitchen-counters:before {
@@ -200,6 +215,7 @@
 		content: '';
 		display: block;
 		position: absolute;
+		top: 0;
 		width: 40px;
 		height: 40px;
 		right: 25px;
@@ -263,12 +279,33 @@
 		left: 310px;
 	}
 	
+	#washer {
+		width: 60px;
+		height: 54px;
+		top: 85px;
+		left: 370px;
+	}
+	
+	#dryer {
+		width: 60px;
+		height: 54px;
+		top: 145px;
+		left: 370px;
+	}
+	
+	#tub {
+		width: 120px;
+		height: 63px;
+		top: 7px;
+		left: 453px;
+	}
+	
 </style>
 
 <script>
 	
 	$(function() {
-		$('.object').draggable({containment: '#apartment'})
+		$('.object.draggable').draggable({containment: '#apartment'})
 			.dblclick(function() {
 				$(this).toggleClass('rotated');
 			});
