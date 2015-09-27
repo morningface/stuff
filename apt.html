@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>It's Alex Time</title>
+	<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0" />
+	<script src="/stuff/assets/jquery-1.11.2.js"></script>
+	<script src="/stuff/assets/modernizr-v3.0.0.min.js"></script>
+	<link href='/stuff/assets/reset.css' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div id="apartment">
+	<div id="front-door" class="door--vertical"></div>
+	<div id="front-patio-door" class="door--vertical"></div>
+	<div id="back-door" class="door--vertical"></div>
+	<div id="room"></div>
+	<div id="room-door" class="door--vertical"></div>
+	<div id="room-closet"></div>
+	<div id="room-closet-door" class="door--vertical"></div>
+	<div id="bathroom"></div>
+	<div id="bathroom-door" class="door--horizontal"></div>
+	<div id="main-closet-door" class="door--horizontal"></div>
+	<div id="kitchen-counters" class="door--horizontal"></div>
+</div>
+
+<style>
+	
+	body {
+		background-color: #f3f3f3;
+	}
+
+	#apartment {
+		height: 276px;
+		width: 1158px;
+		border: solid 4px #000;
+		margin: auto;
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: #fff;
+	}
+	
+	#apartment div {
+		position: absolute;
+		border: solid 4px #000;
+		margin: -4px;
+	}
+	
+	.door--vertical {
+		width: 0;
+		height: 50px;
+	}
+	
+	.door--horizontal {
+		width: 50px;
+		height: 0;
+	}
+
+	#front-door {
+		top: 10px;
+		right: -2px;
+	}
+	
+	#front-patio-door {
+		top: 140px;
+		right: -2px;
+		height: 100px;
+	}
+
+	#back-door {
+		bottom: 138px;
+		left: -2px;
+		height: 100px;
+	}
+	
+	#room {
+		height: 276px;
+		width: 354px;
+		top: 0;
+		left: 0;
+	}
+	
+	#room-door {
+		bottom: 10px;
+		left: 356px;
+	}
+	
+	#bathroom {
+		width: 216px;
+		height: 204px;
+		left: 358px;
+	}
+	
+	#bathroom-door {
+		top: 206px;
+		left: 445px;
+	}
+	
+	#room-closet {
+		height: 70px;
+		width: 48px;
+		top: 0;
+		left: 306px;
+	}
+	
+	#room-closet-door {
+		top: 10px;
+		left: 304px;
+	}
+	
+	#main-closet-door {
+		top: -2px;
+		right: 290px;
+	}
+	
+	#kitchen-counters {
+		top: 0px;
+		right: 380px;
+		width: 200px;
+		height: 204px;
+		background-color: #f3f3f3;
+	}
+	
+	#kitchen-counters:before {
+		bottom: -4px;
+		right: -4px;
+		width: 160px;
+		height: 164px;
+		border-top: solid 4px #000;
+		border-left: solid 4px #000;
+		position: absolute;
+		display: block;
+		content: '';
+		background-color: #fff;
+	}
+	
+	#kitchen-counters:after {
+		content: '';
+		display: block;
+		position: absolute;
+		width: 40px;
+		height: 40px;
+		right: 0;
+		border-left: solid 4px #ccc;
+	}
+	
+</style>
+
+</body>
+</html>
