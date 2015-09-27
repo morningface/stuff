@@ -23,38 +23,31 @@
 	<div id="bathroom-door" class="door--horizontal"></div>
 	<div id="main-closet-door" class="door--horizontal"></div>
 	<div id="kitchen-counters"></div>
-	<div id="kitchen-table" class="object"></div>
-	<div id="sofa" class="object two"></div>
+	<div id="kitchen-table" class="object">table</div>
+	<div id="sofa" class="object">sofa</div>
+	<div id="bed" class="object">bed</div>
+	<div id="dresser" class="object">dresser</div>
+	<div id="tv-stand" class="object">tv stand</div>
+	<div id="cube" class="object">cube</div>
+	<div id="book-shelf-one" class="book-shelf object">book shelf</div>
+	<div id="book-shelf-two" class="book-shelf object">book shelf</div>
 </div>
 
 <style>
 	
 	body {
-		background-color: #f3f3f3;
+		background-color: #a9bccc;
 		position: relative;
-		height: 100vh;
-		width: 100vw;
+		font-family: Lato;
 	}
 
 	#apartment {
 		height: 276px;
 		width: 1158px;
 		border: solid 4px #000;
-		margin: auto;
-		position: absolute;
-		top: 50px;
-		bottom: 50px;
-		left: 50px;
-		right: 50px;
+		margin: 50px;
+		position: relative;
 		background-color: #fff;
-	}
-	
-	.object {
-		cursor: pointer;
-		z-index: 5;
-	}
-	.object:active {
-		background-color: #ff1234 !important;
 	}
 	
 	#apartment:before {
@@ -63,10 +56,28 @@
 		position: absolute;
 		right: -4px;
 		top: -4px;
-		background-color: #f3f3f3;
+		background-color: #a9bccc;
 		width: 400px;
 		height: 44px;
 		border-bottom: solid 4px #000;
+	}
+	
+	#apartment .object {
+		cursor: pointer;
+		z-index: 5;
+		font-size: 12px;
+		text-align: center;
+		background-color: #ff6c00;
+		color: #fff;
+		text-shadow: 1px 1px 0px #000;
+		border: dashed 10px #ff6c00;
+		box-sizing: border-box;
+		border-radius: 3px;
+		box-sizing: border-box;
+		line-height: 10px;
+	}
+	#apartment .object:active {
+		background-color: #ff9a50 !important;
 	}
 	
 	#apartment div {
@@ -90,6 +101,7 @@
 	#front-door {
 		top: 60px;
 		right: -2px;
+		border-color: #1266ff !important;
 	}
 	
 	#front-patio-door {
@@ -132,7 +144,7 @@
 		height: 70px;
 		top: 0;
 		left: 306px;
-		background-color: white;
+		background-color: #ddd;
 		z-index: 1;
 	}
 	
@@ -143,7 +155,7 @@
 	
 	#main-closet-door {
 		top: 42px;
-		right: 290px;
+		right: 260px;
 	}
 	
 	#kitchen-counters {
@@ -151,7 +163,7 @@
 		right: 380px;
 		width: 200px;
 		height: 204px;
-		background-color: #f3f3f3;
+		background-color: #ddd;
 	}
 	
 	#kitchen-counters:before {
@@ -174,32 +186,68 @@
 		position: absolute;
 		width: 40px;
 		height: 40px;
-		right: 0;
-		border-left: solid 4px #ccc;
+		right: 25px;
+		background-color: #ccc;
 	}
 	
 	#sofa {
-		width: 72px;
-		height: 128px;
-		background-color: red;
-		bottom: 30px;
-		right: 30px;
-	}
-	
-	#sofa.two {
-		background-color: purple;
-		right: 92px;
-		transform: rotate(90deg);
-		bottom: -22px;
+		height: 72px;
+		width: 128px;
+		bottom: 5px;
+		right: 65px;
 	}
 	
 	#kitchen-table {
 		width: 72px;
 		height: 72px;
-		background-color: orange;
-		bottom: 6px;
-		right: 250px;
-		z-index: 4;
+		bottom: 5px;
+		right: 300px;
+	}
+	
+	#bed {
+		height: 132px;
+		width: 166px;
+		bottom: 5px;
+		left: 5px;
+	}
+	
+	#dresser {
+		width: 64px;
+		height: 38px;
+		top: 10px;
+		left: 135px;
+	}
+	
+	#tv-stand {
+		width: 110px;
+		height: 31px;
+		top: 50px;
+		right: 75px;
+	}
+	
+	#cube {
+		width: 62px;
+		height: 31px;
+		bottom: 21px;
+		right: 195px;
+		transform: rotate(90deg);
+	}
+	
+	.book-shelf {
+		width: 61px;
+		height: 32px;
+	}
+	
+	#book-shelf-one {
+		top: 95px;
+		left: 310px;
+		transform: rotate(90deg);
+	}
+	
+	#book-shelf-two {
+		top: 160px;
+		left: 310px;
+		transform: rotate(90deg);
 	}
 	
 </style>
@@ -207,7 +255,7 @@
 <script>
 	
 	$(function() {
-		$('.object').draggable();
+		$('.object').draggable({containment: '#apartment'});
 	});
 	
 </script>
