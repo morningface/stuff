@@ -1,5 +1,6 @@
 
 <!DOCTYPE html>
+
 <html>
 <head>
 	<title>It's Alex Time</title>
@@ -22,6 +23,8 @@
 	<div id="bathroom-door" class="door--horizontal"></div>
 	<div id="main-closet-door" class="door--horizontal"></div>
 	<div id="kitchen-counters" class="door--horizontal"></div>
+	<div id="kitchen-table"></div>
+	<div id="sofa" class="two"></div>
 </div>
 
 <style>
@@ -43,6 +46,18 @@
 		background-color: #fff;
 	}
 	
+	#apartment:before {
+		display: block;
+		content: '';
+		position: absolute;
+		right: -4px;
+		top: -4px;
+		background-color: #f3f3f3;
+		width: 400px;
+		height: 44px;
+		border-bottom: solid 4px #000;
+	}
+	
 	#apartment div {
 		position: absolute;
 		border: solid 4px #000;
@@ -62,7 +77,7 @@
 	}
 
 	#front-door {
-		top: 10px;
+		top: 60px;
 		right: -2px;
 	}
 	
@@ -116,7 +131,7 @@
 	}
 	
 	#main-closet-door {
-		top: -2px;
+		top: 42px;
 		right: 290px;
 	}
 	
@@ -149,6 +164,30 @@
 		height: 40px;
 		right: 0;
 		border-left: solid 4px #ccc;
+	}
+	
+	#sofa {
+		width: 72px;
+		height: 128px;
+		background-color: red;
+		bottom: 30px;
+		right: 30px;
+	}
+	
+	#sofa.two {
+		background-color: purple;
+		right: 92px;
+		transform: rotate(90deg);
+		bottom: -22px;
+	}
+	
+	#kitchen-table {
+		width: 72px;
+		height: 72px;
+		background-color: orange;
+		bottom: 6px;
+		right: 250px;
+		z-index: 4;
 	}
 	
 </style>
