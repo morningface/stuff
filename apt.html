@@ -6,6 +6,7 @@
 	<title>It's Alex Time</title>
 	<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0" />
 	<script src="/stuff/assets/jquery-1.11.2.js"></script>
+  	<script src="/stuff/assets/jquery-ui.js"></script>
 	<script src="/stuff/assets/modernizr-v3.0.0.min.js"></script>
 	<link href='/stuff/assets/reset.css' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
@@ -22,9 +23,9 @@
 	<div id="bathroom"></div>
 	<div id="bathroom-door" class="door--horizontal"></div>
 	<div id="main-closet-door" class="door--horizontal"></div>
-	<div id="kitchen-counters" class="door--horizontal"></div>
-	<div id="kitchen-table"></div>
-	<div id="sofa" class="two"></div>
+	<div id="kitchen-counters"></div>
+	<div id="kitchen-table" class="object"></div>
+	<div id="sofa" class="object two"></div>
 </div>
 
 <style>
@@ -47,6 +48,14 @@
 		left: 50px;
 		right: 50px;
 		background-color: #fff;
+	}
+	
+	.object {
+		cursor: pointer;
+		z-index: 5;
+	}
+	.object:active {
+		background-color: #ff1234 !important;
 	}
 	
 	#apartment:before {
@@ -157,6 +166,7 @@
 		display: block;
 		content: '';
 		background-color: #fff;
+		z-index: 0;
 	}
 	
 	#kitchen-counters:after {
@@ -194,6 +204,14 @@
 	}
 	
 </style>
+
+<script>
+	
+	$(function() {
+		$('.object').draggable();
+	});
+	
+</script>
 
 </body>
 </html>
