@@ -11,26 +11,27 @@
 	<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 </head>
 <body>
+
 <div id="apartment">
-	<div id="front-door" class="door--vertical"></div>
-	<div id="front-patio-door" class="door--vertical"></div>
-	<div id="back-door" class="door--vertical"></div>
+	<div id="front-door" class="door"></div>
+	<div id="front-patio-door" class="door"></div>
+	<div id="back-door" class="door"></div>
 	<div id="room"></div>
-	<div id="room-door" class="door--vertical"></div>
+	<div id="room-door" class="door"></div>
 	<div id="room-closet"></div>
-	<div id="room-closet-door" class="door--vertical"></div>
+	<div id="room-closet-door" class="door"></div>
 	<div id="bathroom"></div>
-	<div id="bathroom-door" class="door--horizontal"></div>
-	<div id="main-closet-door" class="door--horizontal"></div>
+	<div id="bathroom-door" class="door rotated"></div>
+	<div id="main-closet-door" class="door rotated"></div>
 	<div id="kitchen-counters"></div>
 	<div id="kitchen-table" class="object">table</div>
 	<div id="sofa" class="object">sofa</div>
 	<div id="bed" class="object">bed</div>
 	<div id="dresser" class="object">dresser</div>
 	<div id="tv-stand" class="object">tv stand</div>
-	<div id="cube" class="object">cube</div>
-	<div id="book-shelf-one" class="book-shelf object">book shelf</div>
-	<div id="book-shelf-two" class="book-shelf object">book shelf</div>
+	<div id="cube" class="object rotated">cube</div>
+	<div id="book-shelf-one" class="book-shelf object rotated">book shelf</div>
+	<div id="book-shelf-two" class="book-shelf object rotataed">book shelf</div>
 </div>
 
 <style>
@@ -87,6 +88,7 @@
 		border-radius: 3px;
 		box-sizing: border-box;
 		line-height: 10px;
+		transition: all 0.2s ease-in-out;
 	}
 	#apartment .object:active {
 		background-color: #ff9a50 !important;
@@ -98,16 +100,18 @@
 		margin: -4px;
 	}
 	
-	.door--vertical {
+	.door {
 		width: 0;
 		height: 50px;
 		z-index: 2;
 	}
 	
-	.door--horizontal {
-		width: 50px;
-		height: 0;
-		z-index: 2;
+	.rotated { 
+		-webkit-transform: rotate(90deg);
+		-moz-transform: rotate(90deg);
+		-o-transform: rotate(90deg);
+		-ms-transform: rotate(90deg);
+		transform: rotate(90deg);
 	}
 
 	#front-door {
@@ -147,7 +151,7 @@
 	}
 	
 	#bathroom-door {
-		top: 206px;
+		top: 181px;
 		left: 445px;
 	}
 	
@@ -166,7 +170,7 @@
 	}
 	
 	#main-closet-door {
-		top: 42px;
+		top: 17px;
 		right: 260px;
 	}
 	
@@ -242,7 +246,6 @@
 		height: 31px;
 		bottom: 21px;
 		right: 195px;
-		transform: rotate(90deg);
 	}
 	
 	.book-shelf {
@@ -253,13 +256,11 @@
 	#book-shelf-one {
 		top: 95px;
 		left: 310px;
-		transform: rotate(90deg);
 	}
 	
 	#book-shelf-two {
 		top: 160px;
 		left: 310px;
-		transform: rotate(90deg);
 	}
 	
 </style>
@@ -267,7 +268,10 @@
 <script>
 	
 	$(function() {
-		$('.object').draggable({containment: '#apartment'});
+		$('.object').draggable({containment: '#apartment'})
+			.dblclick(function() {
+				$(this).toggleClass('rotated');
+			});
 	});
 	
 </script>
