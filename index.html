@@ -9,130 +9,145 @@
 	<link href='/stuff/assets/reset.css' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 </head>
-<body>
-
-<div id="piano"><!--
-	--><div id="controls"><!--
-		--><div id="wave" class="control"><!--
-			--><h3>Wave Form:</h3><!--
-			--><div class="options">
-				<input type="radio" name="wave" value="sine" id="sine" /><label for="sine">Sine</label>
-				<input type="radio" name="wave" value="square" id="square" /><label for="square">Square</label>
-				<input type="radio" name="wave" value="triangle" id="triangle" checked="checked" /><label for="triangle">Triangle</label>
-				<input type="radio" name="wave" value="sawtooth" id="sawtooth" /><label for="sawtooth">Sawtooth</label>
-			</div><!--
-		--></div><!--
-		--><div id="arpeggio" class="control"><!--
-			--><h3>Arpeggiation:</h3><!--
-			--><div class="options">
-				<input type="radio" name="arpeggio" value="" id="arpeggiation-none" checked="checked" /><label for="arpeggiation-none">None</label>
-				<input type="radio" name="arpeggio" value="major" id="arpeggiation-major" /><label for="arpeggiation-major">Major</label>
-				<input type="radio" name="arpeggio" value="minor" id="arpeggiation-minor" /><label for="arpeggiation-minor">Minor</label>
-				<input type="radio" name="arpeggio" value="gradualMajor" id="arpeggiation-gradualMajor" /><label for="arpeggiation-gradualMajor">Gradual Major</label>
-				<input type="radio" name="arpeggio" value="gradualMinor" id="arpeggiation-gradualMinor" /><label for="arpeggiation-gradualMinor">Gradual Minor</label>
-			</div><!--
-		--></div><!--
-		--><div id="harmony" class="control"><!--
-			--><h3>Harmony:</h3><!--
-			--><div class="options">
-				<input type="radio" name="harmony" value="" id="harmony-none" checked="checked" /><label for="harmony-none">None</label>
-				<input type="radio" name="harmony" value="major" id="harmony-major" /><label for="harmony-major">Major</label>
-				<input type="radio" name="harmony" value="minor" id="harmony-minor" /><label for="harmony-minor">Minor</label>
-			</div><!--
-		--></div><!--
-	--></div>
-	<div class="keys"></div>
+<body><div class="circle-loader"></div>
+	
+<div id="left-area">
+	<div id="piano"><!--
+		--><div class="controls"><!--
+			--><div id="wave" class="control"><!--
+				--><h3>Wave Form:</h3><!--
+				--><div class="options">
+					<input type="radio" name="wave" value="sine" id="sine" /><label for="sine">Sine</label>
+					<input type="radio" name="wave" value="square" id="square" /><label for="square">Square</label>
+					<input type="radio" name="wave" value="triangle" id="triangle" checked="checked" /><label for="triangle">Triangle</label>
+					<input type="radio" name="wave" value="sawtooth" id="sawtooth" /><label for="sawtooth">Sawtooth</label>
+				</div><!--
+			--></div><!--
+			--><div id="harmony" class="control"><!--
+				--><h3>Harmony:</h3><!--
+				--><div class="options">
+					<input type="radio" name="harmony" value="" id="harmony-none" checked="checked" /><label for="harmony-none">None</label>
+					<input type="radio" name="harmony" value="major" id="harmony-major" /><label for="harmony-major">Major</label>
+					<input type="radio" name="harmony" value="minor" id="harmony-minor" /><label for="harmony-minor">Minor</label>
+				</div><!--
+			--></div><!--
+			--><div id="arpeggio" class="control"><!--
+				--><h3>Arpeggiation:</h3><!--
+				--><div class="options">
+					<input type="radio" name="arpeggio" value="" id="arpeggiation-none" checked="checked" /><label for="arpeggiation-none">None</label>
+					<input type="radio" name="arpeggio" value="major" id="arpeggiation-major" /><label for="arpeggiation-major">Major</label>
+					<input type="radio" name="arpeggio" value="minor" id="arpeggiation-minor" /><label for="arpeggiation-minor">Minor</label>
+					<input type="radio" name="arpeggio" value="majorGradual" id="arpeggiation-major-gradual" /><label for="arpeggiation-major-gradual">Major Gradual</label>
+					<input type="radio" name="arpeggio" value="minorGradual" id="arpeggiation-minor-gradual" /><label for="arpeggiation-minor-gradual">Minor Gradual</label>
+					<label for="arpeggiation-number-octaves">Octaves: </label><select name="arpeggio-octaves" id="arpeggiation-number-octaves">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3" selected="selected">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+				</div><!--
+			--></div><!--
+		--></div>
+		<div class="keys"></div>
+	</div>
+	<div id="keyboard">
+		<div class="row">
+			<button class="key text-two-lines text-small" data-keynum="192">~<br />`</button>
+			<button class="key text-two-lines text-small" data-keynum="49">!<br />1</button>
+			<button class="key text-two-lines text-small" data-keynum="50">@<br />2</button>
+			<button class="key text-two-lines text-small" data-keynum="51">#<br />3</button>
+			<button class="key text-two-lines text-small" data-keynum="52">$<br />4</button>
+			<button class="key text-two-lines text-small" data-keynum="53">%<br />5</button>
+			<button class="key text-two-lines text-small" data-keynum="54">^<br />6</button>
+			<button class="key text-two-lines text-small" data-keynum="55">&amp;<br />7</button>
+			<button class="key text-two-lines text-small" data-keynum="56">*<br />8</button>
+			<button class="key text-two-lines text-small" data-keynum="57">(<br />9</button>
+			<button class="key text-two-lines text-small" data-keynum="48">)<br />0</button>
+			<button class="key text-two-lines text-small" data-keynum="189">_<br />-</button>
+			<button class="key text-two-lines text-small" data-keynum="187">+<br />=</button>
+			<button class="key key--long text-small text-bottom text-right" data-keynum="8">delete</button>
+		</div>
+		<div class="row">
+			<button class="key key--long text-bottom text-left text-small" data-keynum="9">tab</button>
+			<button class="key" data-keynum="81">Q</button>
+			<button class="key" data-keynum="87">W</button>
+			<button class="key" data-keynum="69">E</button>
+			<button class="key" data-keynum="82">R</button>
+			<button class="key" data-keynum="84">T</button>
+			<button class="key" data-keynum="89">Y</button>
+			<button class="key" data-keynum="85">U</button>
+			<button class="key" data-keynum="73">I</button>
+			<button class="key" data-keynum="79">O</button>
+			<button class="key" data-keynum="80">P</button>
+			<button class="key text-two-lines text-small" data-keynum="219">{<br />[</button>
+			<button class="key text-two-lines text-small" data-keynum="221">}<br />]</button>
+			<button class="key text-two-lines text-small" data-keynum="220">|<br />\</button>
+		</div>
+		<div class="row">
+			<button class="key key--longer text-bottom text-left text-small" data-keynum="20">caps lock</button>
+			<button class="key" data-keynum="65">A</button>
+			<button class="key" data-keynum="83">S</button>
+			<button class="key" data-keynum="68">D</button>
+			<button class="key" data-keynum="70">F</button>
+			<button class="key" data-keynum="71">G</button>
+			<button class="key" data-keynum="72">H</button>
+			<button class="key" data-keynum="74">J</button>
+			<button class="key" data-keynum="75">K</button>
+			<button class="key" data-keynum="76">L</button>
+			<button class="key text-two-lines text-small" data-keynum="186">:<br />;</button>
+			<button class="key text-two-lines text-small" data-keynum="222">"<br />'</button>
+			<button class="key key--longer text-right text-two-lines text-small" data-keynum="13">
+				<span class="text-smaller">enter</span>
+				<br />return
+			</button>
+		</div>
+		<div class="row">
+			<button class="key key--longest text-bottom text-left text-small">shift</button>
+			<button class="key" data-keynum="90">Z</button>
+			<button class="key" data-keynum="88">X</button>
+			<button class="key" data-keynum="67">C</button>
+			<button class="key" data-keynum="86">V</button>
+			<button class="key" data-keynum="66">B</button>
+			<button class="key" data-keynum="78">N</button>
+			<button class="key" data-keynum="77">M</button>
+			<button class="key text-two-lines text-small" data-keynum="188"><<br />,</button>
+			<button class="key text-two-lines text-small" data-keynum="190">><br />.</button>
+			<button class="key text-two-lines text-small" data-keynum="191">?<br />/</button>
+			<button class="key key--longest text-bottom text-right text-small" data-keynum="16">shift</button>
+		</div>
+		<div class="row">
+			<button class="key text-bottom text-small text-left">fn</button>
+			<button class="key text-bottom text-small text-left">control</button>
+			<button class="key text-small text-left text-two-lines">
+				<span class="text-smaller">alt</span>
+				<br />option
+			</button>
+			<button class="key key--thick text-small text-right text-two-lines">
+				<span class="text-smaller">&#8984;</span>
+				<br />command
+			</button>
+			<button class="key key--space"></button>
+			<button class="key key--thick text-small text-left text-two-lines">
+				<span class="text-smaller">&#8984;</span>
+				<br />command
+			</button>
+			<button class="key text-small text-right text-two-lines">
+				<span class="text-smaller">alt</span>
+				<br />option
+			</button>
+			<button class="key key--arrow key--arrow--up text-smaller">&#9650;</button>
+			<button class="key key--arrow text-smaller">&#9664;</button>
+			<button class="key key--arrow key--arrow--down text-smaller">&#9660;</button>
+			<button class="key key--arrow text-smaller">&#9654;</button>
+		</div>
+	</div>
 </div>
-<div id="keyboard">
-	<div class="row">
-		<button class="key text-two-lines text-small" data-keynum="192">~<br />`</button>
-		<button class="key text-two-lines text-small" data-keynum="49">!<br />1</button>
-		<button class="key text-two-lines text-small" data-keynum="50">@<br />2</button>
-		<button class="key text-two-lines text-small" data-keynum="51">#<br />3</button>
-		<button class="key text-two-lines text-small" data-keynum="52">$<br />4</button>
-		<button class="key text-two-lines text-small" data-keynum="53">%<br />5</button>
-		<button class="key text-two-lines text-small" data-keynum="54">^<br />6</button>
-		<button class="key text-two-lines text-small" data-keynum="55">&amp;<br />7</button>
-		<button class="key text-two-lines text-small" data-keynum="56">*<br />8</button>
-		<button class="key text-two-lines text-small" data-keynum="57">(<br />9</button>
-		<button class="key text-two-lines text-small" data-keynum="48">)<br />0</button>
-		<button class="key text-two-lines text-small" data-keynum="189">_<br />-</button>
-		<button class="key text-two-lines text-small" data-keynum="187">+<br />=</button>
-		<button class="key key--long text-small text-bottom text-right" data-keynum="8">delete</button>
-	</div>
-	<div class="row">
-		<button class="key key--long text-bottom text-left text-small" data-keynum="9">tab</button>
-		<button class="key" data-keynum="81">Q</button>
-		<button class="key" data-keynum="87">W</button>
-		<button class="key" data-keynum="69">E</button>
-		<button class="key" data-keynum="82">R</button>
-		<button class="key" data-keynum="84">T</button>
-		<button class="key" data-keynum="89">Y</button>
-		<button class="key" data-keynum="85">U</button>
-		<button class="key" data-keynum="73">I</button>
-		<button class="key" data-keynum="79">O</button>
-		<button class="key" data-keynum="80">P</button>
-		<button class="key text-two-lines text-small" data-keynum="219">{<br />[</button>
-		<button class="key text-two-lines text-small" data-keynum="221">}<br />]</button>
-		<button class="key text-two-lines text-small" data-keynum="220">|<br />\</button>
-	</div>
-	<div class="row">
-		<button class="key key--longer text-bottom text-left text-small" data-keynum="20">caps lock</button>
-		<button class="key" data-keynum="65">A</button>
-		<button class="key" data-keynum="83">S</button>
-		<button class="key" data-keynum="68">D</button>
-		<button class="key" data-keynum="70">F</button>
-		<button class="key" data-keynum="71">G</button>
-		<button class="key" data-keynum="72">H</button>
-		<button class="key" data-keynum="74">J</button>
-		<button class="key" data-keynum="75">K</button>
-		<button class="key" data-keynum="76">L</button>
-		<button class="key text-two-lines text-small" data-keynum="186">:<br />;</button>
-		<button class="key text-two-lines text-small" data-keynum="222">"<br />'</button>
-		<button class="key key--longer text-right text-two-lines text-small" data-keynum="13">
-			<span class="text-smaller">enter</span>
-			<br />return
-		</button>
-	</div>
-	<div class="row">
-		<button class="key key--longest text-bottom text-left text-small">shift</button>
-		<button class="key" data-keynum="90">Z</button>
-		<button class="key" data-keynum="88">X</button>
-		<button class="key" data-keynum="67">C</button>
-		<button class="key" data-keynum="86">V</button>
-		<button class="key" data-keynum="66">B</button>
-		<button class="key" data-keynum="78">N</button>
-		<button class="key" data-keynum="77">M</button>
-		<button class="key text-two-lines text-small" data-keynum="188"><<br />,</button>
-		<button class="key text-two-lines text-small" data-keynum="190">><br />.</button>
-		<button class="key text-two-lines text-small" data-keynum="191">?<br />/</button>
-		<button class="key key--longest text-bottom text-right text-small" data-keynum="16">shift</button>
-	</div>
-	<div class="row">
-		<button class="key text-bottom text-small text-left">fn</button>
-		<button class="key text-bottom text-small text-left">control</button>
-		<button class="key text-small text-left text-two-lines">
-			<span class="text-smaller">alt</span>
-			<br />option
-		</button>
-		<button class="key key--thick text-small text-right text-two-lines">
-			<span class="text-smaller">&#8984;</span>
-			<br />command
-		</button>
-		<button class="key key--space"></button>
-		<button class="key key--thick text-small text-left text-two-lines">
-			<span class="text-smaller">&#8984;</span>
-			<br />command
-		</button>
-		<button class="key text-small text-right text-two-lines">
-			<span class="text-smaller">alt</span>
-			<br />option
-		</button>
-		<button class="key key--arrow key--arrow--up text-smaller">&#9650;</button>
-		<button class="key key--arrow text-smaller">&#9664;</button>
-		<button class="key key--arrow key--arrow--down text-smaller">&#9660;</button>
-		<button class="key key--arrow text-smaller">&#9654;</button>
-	</div>
+<div id="right-area">
+		<div class="controls">
+			<button id="record-button"></button>
+		</div>
+		<div id="recordings"></div>
 </div>
 
 <script>
@@ -152,6 +167,10 @@
 				$('.keys').append("<h2>Sorry, your browser doesn't support awesome things :(</h2>");
 				return;
 			}
+			
+			setTimeout(function() {
+				$('.circle-loader').addClass('circle-loader--loaded');
+			}, 500);
 		});
 		
 		var Piano = function() {
@@ -165,8 +184,10 @@
 			// currently selected waveform
 			this.currentWaveForm = 'triangle';
 			
-			// arpeggiation
-			this.arpeggiation = '';
+			// arpeggiation name, number of octaves, chord progression
+			this.arpeggiationName = '';
+			this.arpeggiationOctaves = 3;
+			this.arpeggiationProgression = [];
 			
 			// harmony
 			this.harmony = '';
@@ -219,6 +240,18 @@
 				65:		32, // a
 			};
 			
+			// chord progressions
+			this.chordProgressions = {
+				'major': [4, 7, 12],
+				'minor': [3, 7, 12],
+				'majorGradual': [4, 0, 4, 7, 4, 7, 12, 7, 12],
+				'minorGradual': [3, 0, 3, 7, 3, 7, 12, 7, 12],
+			};
+			
+			// array of recordings and current recording
+			this.recordings = [];
+			this.currentRecording;
+			
 			// appends notes, populates note data
 			this.init = function() {
 				this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -249,8 +282,10 @@
 					var mousedown = false;
 					
 					$(window).keydown(function(e) {
-						e.preventDefault();
-						that.pressNote(that.keyCodes[e.keyCode]);
+						if (that.keyCodes[e.keyCode] != undefined && that.keyCodes[e.keyCode] != null) {
+							e.preventDefault();
+							that.pressNote(that.keyCodes[e.keyCode]);
+						}
 					});
 
 					$(window).keyup(function(e) {
@@ -289,16 +324,25 @@
 					});
 				}
 				
-				$('#controls [name=wave]').click(function(e) {
+				$('.controls [name=wave]').click(function(e) {
 					that.setWaveForm($(this).filter(':checked').val());
 				});
 				
-				$('#controls [name=arpeggio]').change(function(e) {
+				$('.controls [name=arpeggio]').change(function(e) {
 					that.setArpeggiation($(this).filter(':checked').val());
 				});
 				
-				$('#controls [name=harmony]').change(function(e) {
+				$('.controls [name=arpeggio-octaves]').change(function(e) {
+					that.setArpeggiationOctaves(parseInt($(this).val()));
+				});
+				
+				$('.controls [name=harmony]').change(function(e) {
 					that.setHarmony($(this).filter(':checked').val());
+				});
+				
+				$('#record-button').click(function(e) {
+					$(this).toggleClass('pressed');
+					that.toggleRecording();
 				});
 			}
 			
@@ -306,32 +350,38 @@
 			// visually presses note on page
 			this.pressNote = function(keynum, internal) {
 				if (keynum != undefined
-						&& keynum != null
-						&& this.notes[keynum]
-						&& !this.notes[keynum].o) {
-					
-					var gainNode = this.audioCtx.createGain();
-					gainNode.connect(this.audioCtx.destination);
-					gainNode.gain.value = 0;
-					
-					var oscillator = this.audioCtx.createOscillator();
-					oscillator.type = this.currentWaveForm;
-					oscillator.frequency.value = this.notes[keynum].freq;
-					oscillator.connect(gainNode);
-					oscillator.start(this.audioCtx.currentTime);
-					
-					var now = this.audioCtx.currentTime;
-					gainNode.gain.cancelScheduledValues(now);
-					gainNode.gain.setValueAtTime(0, now);
-					gainNode.gain.linearRampToValueAtTime(this.maxVolume, now + 0.01);
-					
-					this.notes[keynum].o = oscillator;
-					this.notes[keynum].g = gainNode;
-					
-					$('[data-note=' + keynum + ']').addClass('pressed');
-					
-					if (!internal) {
-						this.arpeggiate(keynum);
+					&& keynum != null
+					&& this.notes[keynum]) {
+					if (!this.notes[keynum].o) {
+						var gainNode = this.audioCtx.createGain();
+						gainNode.connect(this.audioCtx.destination);
+						gainNode.gain.value = 0;
+
+						var oscillator = this.audioCtx.createOscillator();
+						oscillator.type = this.currentWaveForm;
+						oscillator.frequency.value = this.notes[keynum].freq;
+						oscillator.connect(gainNode);
+						oscillator.start(this.audioCtx.currentTime);
+
+						var now = this.audioCtx.currentTime;
+						gainNode.gain.cancelScheduledValues(now);
+						gainNode.gain.setValueAtTime(0, now);
+						gainNode.gain.linearRampToValueAtTime(this.maxVolume, now + 0.01);
+
+						this.notes[keynum].o = oscillator;
+						this.notes[keynum].g = gainNode;
+
+						$('[data-note=' + keynum + ']').addClass('pressed');
+
+						if (!internal) {
+							this.arpeggiate(keynum);
+							this.harmonize(keynum);
+						}
+						
+						if (this.currentRecording) {
+							this.currentRecording.pressNote(keynum, internal);
+						}
+					} else if (!internal) {
 						this.harmonize(keynum);
 					}
 				}
@@ -362,6 +412,10 @@
 					
 					$('[data-note=' + keynum + ']').removeClass('pressed');
 				}
+						
+				if (this.currentRecording) {
+					this.currentRecording.releaseNote(keynum);
+				}
 			};
 			
 			// calls releaseNote() on all key numbers
@@ -373,88 +427,56 @@
 				}
 			};
 			
+			// trigger note creation for harmony
+			this.harmonize = function(keynum) {
+				var harmony;
+				if (this.chordProgressions[this.harmony]) {
+					harmony = this.chordProgressions[this.harmony];
+				} else {
+					return;
+				}
+				
+				for (var i=0; i<harmony.length; i++) {
+					this.pressNote(keynum + harmony[i], true);
+					this.notes[keynum].childNotes.push(keynum + harmony[i]);
+				}
+			};
+			
 			// trigger note creation for arpeggio harmony
 			this.arpeggiate = function(keynum) {
 				
-				var majorProgression = [keynum+4, keynum+7, keynum+12,
-									 keynum+16, keynum+19, keynum+24,
-									 keynum+28, keynum+31, keynum+28,
-									 keynum+24, keynum+19, keynum+16,
-									 keynum+12, keynum+7, keynum+4, keynum];
-				
-				var minorProgression = [keynum+3, keynum+7, keynum+12,
-									 keynum+15, keynum+19, keynum+24,
-									 keynum+27, keynum+31, keynum+27,
-									 keynum+24, keynum+19, keynum+15,
-									 keynum+12, keynum+7, keynum+3, keynum];
-				
-				var gradualMajorProgression = [keynum+4, keynum+7, keynum+4, keynum+7, keynum+12,
-									 keynum+7, keynum+12, keynum+16, keynum+12, keynum+16, keynum+19,
-									 keynum+16, keynum+19, keynum+24,
-									 keynum+19, keynum+16, keynum+19, keynum+16, keynum+12, keynum+16,
-									 keynum+12, keynum+7, keynum+12, keynum+7, keynum+4,
-									 keynum+7, keynum+4, keynum];
-				
-				var gradualMinorProgression = [keynum+3, keynum+7, keynum+3, keynum+7, keynum+12,
-									 keynum+7, keynum+12, keynum+15, keynum+12, keynum+15, keynum+19,
-									 keynum+15, keynum+19, keynum+24,
-									 keynum+19, keynum+15, keynum+19, keynum+15, keynum+12, keynum+15,
-									 keynum+12, keynum+7, keynum+12, keynum+7, keynum+3,
-									 keynum+7, keynum+3, keynum];
-				
 				var i=0, that = this;
+				this.calculateArpeggiation();
 				
-				var interval = setInterval(function() {
-					
+				var interval = setInterval(function() {	
 					if (that.notes[keynum].o) {
-						var progression;
-						
-						switch (that.arpeggiation) {
-							case 'major':
-								progression = majorProgression;
-								break;
-							case 'minor':
-								progression = minorProgression;
-								break;
-							case 'gradualMajor':
-								progression = gradualMajorProgression;
-								break;
-							case 'gradualMinor':
-								progression = gradualMinorProgression;
-								break;
-							default:
-								progression = [];
-								break;
-						}
-						
-						that.createSelfDecayingNote(progression[i]);
-						i = i >= progression.length - 1 ? 0 : i+1;
+						that.createSelfDecayingNote(that.arpeggiationProgression[i] + keynum);
+						i = i >= that.arpeggiationProgression.length - 1 ? 0 : i+1;
 					} else {
 						clearInterval(interval);
 					}
 				}, 100);
 			};
 			
-			// trigger note creation for harmony
-			this.harmonize = function(keynum) {
+			// update chord progression to use for arpeggiation
+			this.calculateArpeggiation = function() {
+				var progression = this.chordProgressions[this.arpeggiationName] || [];
+				var arpeggio = [];
 				
-				var majorHarmony = [keynum+4, keynum+7];
-				var minorHarmony = [keynum+3, keynum+7];
-				
-				var harmony;
-				if (this.harmony == 'major') {
-					harmony = majorHarmony;
-				} else if (this.harmony == 'minor') {
-					harmony = minorHarmony;
-				} else {
-					return;
+				for (var octave=0; octave<this.arpeggiationOctaves; octave++) {
+					for (var j=0; j<progression.length; j++) {
+						arpeggio.push(progression[j] + (octave * 12));
+					}
 				}
 				
-				this.notes[keynum].childNotes = harmony;
-				for (var i=0; i<harmony.length; i++) {
-					this.pressNote(harmony[i], true);
+				// add the inverse of the array back into it
+				// excludes first and last notes to avoid repetition during arpeggiation
+				for (var j=arpeggio.length-2; j>0; j--) {
+					arpeggio.push(arpeggio[j]);
 				}
-			};	
+
+				this.arpeggiationProgression = arpeggio;
+			};
 			
 			// creates self contained note that ends itself after 100ms
 			this.createSelfDecayingNote = function(keynum) {
@@ -489,6 +511,10 @@
 						oscillator = null;
 					}, 100);
 				}
+						
+				if (this.currentRecording) {
+					this.currentRecording.createSelfDecayingNote(keynum);
+				}
 			};
 			
 			// returns frequency for given piano key number
@@ -510,14 +536,117 @@
 			
 			// updates the current arpeggiation type
 			this.setArpeggiation = function(state) {
-				this.arpeggiation = state;
+				this.arpeggiationName = state;
+				this.calculateArpeggiation();
+			};
+			
+			// updates the current arpeggiation octaves
+			this.setArpeggiationOctaves = function(qty) {
+				if (!(qty >= 1 && qty <= 5))
+					qty = 3;
+				
+				this.arpeggiationOctaves = qty;
+				this.calculateArpeggiation();
 			};
 			
 			// updates the current harmony type
 			this.setHarmony = function(state) {
 				this.harmony = state;
 			};
-		}
+			
+			// either initialize a recording or stop and save a recording
+			this.toggleRecording = function() {
+				if (!this.currentRecording) {
+					this.currentRecording = new Recording(this);
+				} else {
+					this.currentRecording.save();
+					this.recordings.push(this.currentRecording);
+					this.currentRecording = null;
+				}
+			};
+			
+			// set all controls to initial settings
+			this.resetControls = function() {
+				
+				$('#arpeggiation-none').prop('checked', true);
+				
+				$('#harmony-none').prop('checked', true);
+			}
+		};
+		
+		var Recording = function(source) {
+			
+			this.instrument = source;
+			this.record = [];
+			this.startTime = (new Date()).getTime();
+			this.duration;
+			this.domElement;
+			
+			this.pressNote = function(keynum, internal) {
+				var that = this, relativeTime = (new Date()).getTime() - this.startTime;
+				this.record.push(function() {
+					setTimeout(function() {
+						that.instrument.pressNote(keynum, internal);
+					}, relativeTime);
+				});
+			};
+			
+			this.createSelfDecayingNote = function(keynum) {
+				var that = this, relativeTime = (new Date()).getTime() - this.startTime;
+				this.record.push(function() {
+					setTimeout(function() {
+						that.instrument.createSelfDecayingNote(keynum);
+					}, relativeTime);
+				});
+			};
+			
+			this.releaseNote = function(keynum) {
+				var that = this, relativeTime = (new Date()).getTime() - this.startTime;
+				this.record.push(function() {
+					setTimeout(function() {
+						that.instrument.releaseNote(keynum);
+					}, relativeTime);
+				});
+			};
+			
+			this.save = function() {
+				this.duration = (new Date()).getTime() - this.startTime;
+				this.appendToPage();
+			}
+			
+			this.appendToPage = function() {
+				var $dom = $('<div class="recording"></div>');
+				$dom.append('<h3>Recording</h3><p>Length: ' + (this.duration / 1000) + ' seconds</p>');
+				$dom.appendTo('#recordings');
+				
+				var $button = $('<button></button>');
+				$button.appendTo($dom);
+				
+				this.domElement = $dom;
+				
+				var that = this;
+				$button.click(function() {
+					that.play();
+				});
+			}
+			
+			this.play = function() {
+				this.domElement.addClass('playing');
+				
+				this.instrument.resetControls();
+				
+				for (var i=0; i<this.record.length; i++) {
+					this.record[i]();
+				}
+				
+				this.instrument.releaseAllNotes();
+				
+				var that = this;
+				setTimeout(function() {
+					that.domElement.removeClass('playing');
+				}, this.duration);
+			};
+		};
 	}());
 	
 </script>
@@ -525,6 +654,10 @@
 <style>
 	body {
 		margin: 0;
+	}
+	
+	#left-area {
+		width: 80%;
 		background: rgba(51,180,255,1);
 		background: -moz-linear-gradient(left, rgba(51,180,255,1) 0%, rgba(0,152,240,1) 100%);
 		background: -webkit-gradient(left top, right top, color-stop(0%, rgba(51,180,255,1)), color-stop(100%, rgba(0,152,240,1)));
@@ -538,6 +671,42 @@
 		box-sizing: border-box;
 		position: relative;
 		font-family: Lato;
+	}
+	
+	#right-area {
+		position: fixed;
+		right: 0;
+		top: 0;
+		width: 20%;
+		box-sizing: border-box;
+		bottom: 0;
+		background-color: #0098F0;
+		z-index: 1;
+		border-left: solid 4px #444;
+		padding-top: 133px;
+	}
+	
+	.circle-loader {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: -1;
+		background-color: rgb(255,255,255);
+		opacity: 0.1;
+		border-radius: 50%;
+		width: 0vw;
+		height: 0vw;
+		margin: auto;
+		-webkit-transition: width ease-in-out 0.5s, height ease-in-out 0.5s, opacity ease-in-out 0.5s, background-color ease-in-out 0.5s;
+	}
+	
+	.circle-loader--loaded {
+		width: 70vw;
+		height: 70vw;
+		background-color: rgb(255,255,255);
+		opacity: 0;
 	}
 	
 	#piano {
@@ -560,7 +729,7 @@
 	}
 	
 	#piano .key {
-		width: 2vw;
+		width: 2%;
 		height: 12vw;
 		background-color: #fff;
 		display: inline-block;
@@ -578,10 +747,10 @@
 	#piano .key.black {
 		background-color: #000;
 		border-color: #ddd;
-		margin-left: -0.75vw;
+		margin-left: -0.75%;
 		height: 7vw;
 		z-index: 2;
-		width: 1.5vw;
+		width: 1.5%;
 		box-shadow: 3px 3px 10px -3px #000;
 	}
 	
@@ -600,7 +769,7 @@
 		margin-left: -0.75vw;
 	}
 	
-	#controls {
+	#piano .controls {
 		text-align: center;
 		background: rgba(255,223,39,1);
 		background: -moz-linear-gradient(left, rgba(255,223,39,1) 0%, rgba(222,194,33,1) 100%);
@@ -616,14 +785,14 @@
 		border-bottom: 5px solid #444;
 	}
 	
-	#controls .control {
+	.controls .control {
 	    display: inline-block;
 		margin: 10px 30px;
 		vertical-align: middle;
 		text-align: center;
 	}
 	
-	#controls .control h3 {
+	.controls .control h3 {
 		display: inline-block;
 		line-height: 30px;
 		margin: 5px;
@@ -631,7 +800,7 @@
 		font-size: 18px;
 	}
 	
-	#controls .control .options {
+	.controls .control .options {
 		display: inline-block;
 		vertical-align: middle;
 	}
@@ -803,7 +972,90 @@
 		background: linear-gradient(to right, rgba(255,62,62,1) 0%, rgba(204,57,57,1) 100%);
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff3e3e', endColorstr='#cc3939', GradientType=1 );
 	}
+	
+	#right-area {
+		overflow: scroll;
+	}
+	
+	#right-area .controls {
+		height: 133px;
+		border-bottom: solid 4px #444;
+		box-sizing: border-box;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+	}
+	
+	#record-button {
+		height: 73px;
+		width: 150px;
+		max-width: 100%;
+		margin: 28px auto 0;
+		border-radius: 3px;
+		background-color: #eee;
+		box-shadow: 0 0 30px -5px #000;
+		border: solid 2px #222;
+		font-size: 20px;
+		display: block;
+		cursor: pointer;
+	}
+	
+	#record-button:before {
+		content: 'Start Recording';
+	}
+	
+	#record-button.pressed {
+		background-color: #ff1234;
+		box-shadow: 0 0 30px 0px #ff1234;
+		border: solid 2px #ddd;
+		color: #fff;
+	}
+	
+	#record-button.pressed:before {
+		content: 'Stop Recording';
+	}
+	
+	#recordings .recording {
+		text-align: left;
+		padding: 10px;
+		border-bottom: solid 4px #444;
+		color: #fff;
+		position: relative;
+		padding-left: 70px;
+		min-height: 50px;
+	}
+	
+	#recordings .recording button {
+		position: absolute;
+		left: 10px;
+		width: 50px;
+		height: 50px;
+		top: 10px;
+		background-color: #eee;
+		box-shadow: 0 0 30px -5px #000;
+		border: solid 2px #222;
+		font-size: 14px;
+		cursor: pointer;
+		border-radius: 3px;
+	}
+	
+	#recordings .recording button:before {
+		content: 'Play';
+	}
+	
+	#recordings .recording.playing button {
+		background-color: #ff1234;
+		box-shadow: 0 0 30px 0px #ff1234;
+		border: solid 2px #ddd;
+		color: #fff;
+	}
+	
+	#recordings .recording.playing button:before {
+		content: '---';
+	}
+	
 </style>
-
+	
 </body>
 </html>
