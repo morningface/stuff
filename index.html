@@ -9,9 +9,15 @@
 	<link href='/stuff/assets/reset.css' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 </head>
-<body><div class="circle-loader"></div>
-	
+<body>	
+<div class="circle-loader"></div>
 <div id="left-area">
+		<div class="controls">
+			<button id="record-button"></button>
+		</div>
+		<div id="recordings"></div>
+</div>
+<div id="right-area">
 	<div id="piano"><!--
 		--><div class="controls"><!--
 			--><div id="wave" class="control"><!--
@@ -142,12 +148,6 @@
 			<button class="key key--arrow text-smaller">&#9654;</button>
 		</div>
 	</div>
-</div>
-<div id="right-area">
-		<div class="controls">
-			<button id="record-button"></button>
-		</div>
-		<div id="recordings"></div>
 </div>
 
 <script>
@@ -654,9 +654,10 @@
 <style>
 	body {
 		margin: 0;
+		font-family: Lato;
 	}
 	
-	#left-area {
+	#right-area {
 		width: 80%;
 		background: rgba(51,180,255,1);
 		background: -moz-linear-gradient(left, rgba(51,180,255,1) 0%, rgba(0,152,240,1) 100%);
@@ -670,20 +671,26 @@
 		padding-bottom: 375px;
 		box-sizing: border-box;
 		position: relative;
-		font-family: Lato;
+		margin-left: 20%;
 	}
 	
-	#right-area {
+	#left-area {
 		position: fixed;
-		right: 0;
+		left: 0;
 		top: 0;
 		width: 20%;
 		box-sizing: border-box;
 		bottom: 0;
-		background-color: #0098F0;
 		z-index: 1;
-		border-left: solid 4px #444;
-		padding-top: 133px;
+		background: rgba(136,136,136,1);
+		background: -moz-linear-gradient(left, rgba(136,136,136,1) 0%, rgba(119,119,119,1) 100%);
+		background: -webkit-gradient(left top, right top, color-stop(0%, rgba(136,136,136,1)), color-stop(100%, rgba(119,119,119,1)));
+		background: -webkit-linear-gradient(left, rgba(136,136,136,1) 0%, rgba(119,119,119,1) 100%);
+		background: -o-linear-gradient(left, rgba(136,136,136,1) 0%, rgba(119,119,119,1) 100%);
+		background: -ms-linear-gradient(left, rgba(136,136,136,1) 0%, rgba(119,119,119,1) 100%);
+		background: linear-gradient(to right, rgba(136,136,136,1) 0%, rgba(119,119,119,1) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#888888', endColorstr='#777777', GradientType=1 );
+		box-shadow: -10px 0px 10px -10px #000 inset;
 	}
 	
 	.circle-loader {
@@ -713,7 +720,6 @@
 		padding-bottom: 5px;
 		background-color: #ddd;
 		box-shadow: 0px 0px 10px -3px #000;
-		border-top: solid 1px #222;
 		border-bottom: solid 1px #222;
 		-webkit-touch-callout: none;
 		-webkit-user-select: none;
@@ -721,6 +727,7 @@
 		-moz-user-select: none;
 		-ms-user-select: none;
 		user-select: none;
+		overflow: hidden;
 	}
 	
 	#piano .keys {
@@ -771,18 +778,17 @@
 	
 	#piano .controls {
 		text-align: center;
-		background: rgba(255,223,39,1);
-		background: -moz-linear-gradient(left, rgba(255,223,39,1) 0%, rgba(222,194,33,1) 100%);
-		background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,223,39,1)), color-stop(100%, rgba(222,194,33,1)));
-		background: -webkit-linear-gradient(left, rgba(255,223,39,1) 0%, rgba(222,194,33,1) 100%);
-		background: -o-linear-gradient(left, rgba(255,223,39,1) 0%, rgba(222,194,33,1) 100%);
-		background: -ms-linear-gradient(left, rgba(255,223,39,1) 0%, rgba(222,194,33,1) 100%);
-		background: linear-gradient(to right, rgba(255,223,39,1) 0%, rgba(222,194,33,1) 100%);
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffdf27', endColorstr='#dec221', GradientType=1 );
+		background: rgba(221,221,221,1);
+		background: -moz-linear-gradient(left, rgba(221,221,221,1) 0%, rgba(187,187,187,1) 100%);
+		background: -webkit-gradient(left top, right top, color-stop(0%, rgba(221,221,221,1)), color-stop(100%, rgba(187,187,187,1)));
+		background: -webkit-linear-gradient(left, rgba(221,221,221,1) 0%, rgba(187,187,187,1) 100%);
+		background: -o-linear-gradient(left, rgba(221,221,221,1) 0%, rgba(187,187,187,1) 100%);
+		background: -ms-linear-gradient(left, rgba(221,221,221,1) 0%, rgba(187,187,187,1) 100%);
+		background: linear-gradient(to right, rgba(221,221,221,1) 0%, rgba(187,187,187,1) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dddddd', endColorstr='#bbbbbb', GradientType=1 );
 		box-shadow: 0px 0px 10px 0px #000;
 		z-index: 1;
 		position: relative;
-		border-bottom: 5px solid #444;
 	}
 	
 	.controls .control {
@@ -895,6 +901,13 @@
     	box-shadow: 1px 1px 3px -2px #000;
 	}
 	
+	@media ( max-width: 767px ) {
+		#keyboard .key {
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+	
 	#keyboard .key.key--thick {
 		width: 8.3%;
 	}
@@ -973,18 +986,30 @@
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff3e3e', endColorstr='#cc3939', GradientType=1 );
 	}
 	
-	#right-area {
+	#recordings {
+		padding-top: 128px;
 		overflow: scroll;
+		height: 100vh;
+		box-sizing: border-box;
 	}
 	
-	#right-area .controls {
-		height: 133px;
-		border-bottom: solid 4px #444;
+	#left-area .controls {
+		height: 128px;
 		box-sizing: border-box;
 		position: absolute;
+		background: rgba(221,221,221,1);
+		background: -moz-linear-gradient(left, rgba(204,204,204,1) 0%, rgba(221,221,221,1) 100%);
+		background: -webkit-gradient(left top, right top, color-stop(0%, rgba(204,204,204,1)), color-stop(100%, rgba(221,221,221,1)));
+		background: -webkit-linear-gradient(left, rgba(204,204,204,1) 0%, rgba(221,221,221,1) 100%);
+		background: -o-linear-gradient(left, rgba(204,204,204,1) 0%, rgba(221,221,221,1) 100%);
+		background: -ms-linear-gradient(left, rgba(204,204,204,1) 0%, rgba(221,221,221,1) 100%);
+		background: linear-gradient(to right, rgba(204,204,204,1) 0%, rgba(221,221,221,1) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cccccc', endColorstr='#dddddd', GradientType=1 );
+		box-shadow: 0px 0px 10px 0px #000;
 		top: 0;
 		left: 0;
 		right: 0;
+		z-index: 1;
 	}
 	
 	#record-button {
@@ -994,11 +1019,12 @@
 		margin: 28px auto 0;
 		border-radius: 3px;
 		background-color: #eee;
-		box-shadow: 0 0 30px -5px #000;
+		box-shadow: 0 0 20px -7px #000;
 		border: solid 2px #222;
 		font-size: 20px;
 		display: block;
 		cursor: pointer;
+		outline: none !important;
 	}
 	
 	#record-button:before {
@@ -1008,7 +1034,6 @@
 	#record-button.pressed {
 		background-color: #ff1234;
 		box-shadow: 0 0 30px 0px #ff1234;
-		border: solid 2px #ddd;
 		color: #fff;
 	}
 	
@@ -1019,7 +1044,7 @@
 	#recordings .recording {
 		text-align: left;
 		padding: 10px;
-		border-bottom: solid 4px #444;
+		border-bottom: solid 1px #444;
 		color: #fff;
 		position: relative;
 		padding-left: 70px;
@@ -1033,11 +1058,12 @@
 		height: 50px;
 		top: 10px;
 		background-color: #eee;
-		box-shadow: 0 0 30px -5px #000;
+		box-shadow: 0 0 20px -7px #000;
 		border: solid 2px #222;
 		font-size: 14px;
 		cursor: pointer;
 		border-radius: 3px;
+		outline: none !important;
 	}
 	
 	#recordings .recording button:before {
@@ -1047,7 +1073,6 @@
 	#recordings .recording.playing button {
 		background-color: #ff1234;
 		box-shadow: 0 0 30px 0px #ff1234;
-		border: solid 2px #ddd;
 		color: #fff;
 	}
 	
