@@ -9,10 +9,12 @@
 	<link href='/stuff/assets/reset.css' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 </head>
-<body>	
+<body>
+
 <div class="circle-loader"></div>
 <div id="left-area">
 		<div class="controls">
+			<button id="play-all-button"></button>
 			<button id="record-button"></button>
 		</div>
 		<div id="recordings"></div>
@@ -344,6 +346,10 @@
 					$(this).toggleClass('pressed');
 					that.toggleRecording();
 				});
+				
+				$('#play-all-button').click(function(e) {
+					that.playAllRecordings();
+				});
 			}
 			
 			// creates oscillator/gain with keynumber's frequency
@@ -562,6 +568,13 @@
 					this.currentRecording.save();
 					this.recordings.push(this.currentRecording);
 					this.currentRecording = null;
+				}
+			};
+			
+			// call play() on all known recordings
+			this.playAllRecordings = function() {
+				for (var i=0; i < this.recordings.length; i++) {
+					this.recordings[i].play();
 				}
 			};
 			
@@ -995,6 +1008,7 @@
 	
 	#left-area .controls {
 		height: 128px;
+		text-align: center;
 		box-sizing: border-box;
 		position: absolute;
 		background: rgba(221,221,221,1);
@@ -1022,7 +1036,7 @@
 		box-shadow: 0 0 20px -7px #000;
 		border: solid 2px #222;
 		font-size: 20px;
-		display: block;
+		display: inline-block;
 		cursor: pointer;
 		outline: none !important;
 	}
@@ -1039,6 +1053,25 @@
 	
 	#record-button.pressed:before {
 		content: 'Stop Recording';
+	}
+	
+	#play-all-button {
+		height: 73px;
+		width: 73px;
+		max-width: 100%;
+		margin: 28px auto 0;
+		border-radius: 3px;
+		background-color: #eee;
+		box-shadow: 0 0 20px -7px #000;
+		border: solid 2px #222;
+		font-size: 20px;
+		display: inline-block;
+		cursor: pointer;
+		outline: none !important;
+	}
+	
+	#play-all-button:before {
+		content: 'Play All';
 	}
 	
 	#recordings .recording {
@@ -1081,6 +1114,6 @@
 	}
 	
 </style>
-	
+
 </body>
 </html>
