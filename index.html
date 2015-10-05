@@ -13,10 +13,10 @@
 
 <div class="circle-loader"></div>
 <div id="left-area">
-		<div class="controls">
-			<button id="play-all-button"></button>
-			<button id="record-button"></button>
-		</div>
+		<div class="controls"><!--
+			--><button id="play-all-button"></button><!--
+			--><button id="record-button"></button><!--
+		--></div>
 		<div id="recordings"></div>
 </div>
 <div id="right-area">
@@ -284,14 +284,18 @@
 					var mousedown = false;
 					
 					$(window).keydown(function(e) {
-						if (that.keyCodes[e.keyCode] != undefined && that.keyCodes[e.keyCode] != null) {
+						if (e.target.nodeName.toLowerCase() != 'input'
+								&& that.keyCodes[e.keyCode] != undefined
+								&& that.keyCodes[e.keyCode] != null) {
 							e.preventDefault();
 							that.pressNote(that.keyCodes[e.keyCode]);
 						}
 					});
 
 					$(window).keyup(function(e) {
-						that.releaseNote(that.keyCodes[e.keyCode]);
+						if (e.target.nodeName.toLowerCase() != 'input') {
+							that.releaseNote(that.keyCodes[e.keyCode]);
+						}
 					});
 
 					$('.key').mousedown(function(e) {
@@ -343,12 +347,19 @@
 				});
 				
 				$('#record-button').click(function(e) {
-					$(this).toggleClass('pressed');
+					$(this).toggleClass('recording');
 					that.toggleRecording();
 				});
 				
 				$('#play-all-button').click(function(e) {
-					that.playAllRecordings();
+					$(this).toggleClass('playing');
+					that.togglePlayAllRecordings();
+				});
+				
+				$(window).on('recording:end', function() {
+					if (that.checkAllRecordingsEnded() == true) {
+						$('#play-all-button').removeClass('playing');
+					}
 				});
 			}
 			
@@ -526,6 +537,7 @@
 			// returns frequency for given piano key number
 			this.getFrequency = function(keynum) {
 				return Math.pow(Math.pow(2,1/12),keynum-49)*440;
+//				                                        33  55
 			};
 			
 			// updates the current waveform used when creating oscillators
@@ -571,6 +583,15 @@
 				}
 			};
 			
+			// play all recordings or stop all recordings
+			this.togglePlayAllRecordings = function() {
+				if (this.checkAllRecordingsEnded() == true) {
+					this.playAllRecordings();
+				} else {
+					this.endAllRecordings();
+				}
+			};
+			
 			// call play() on all known recordings
 			this.playAllRecordings = function() {
 				for (var i=0; i < this.recordings.length; i++) {
@@ -578,12 +599,32 @@
 				}
 			};
 			
+			// check all known recordings to see if any is still playing
+			this.checkAllRecordingsEnded = function() {
+				for (var i=0; i < this.recordings.length; i++) {
+					if (this.recordings[i].isPlaying()) {
+						return false;
+					}
+				}
+				
+				return true;
+			};
+			
+			// call stop() on all known recordings
+			this.endAllRecordings = function() {
+				for (var i=0; i<this.recordings.length; i++) {
+					this.recordings[i].stop();
+				}
+			};
+			
 			// set all controls to initial settings
 			this.resetControls = function() {
 				
 				$('#arpeggiation-none').prop('checked', true);
-				
 				$('#harmony-none').prop('checked', true);
+				
+				this.setArpeggiation('');
+				this.setHarmony('');
 			}
 		};
 		
@@ -593,71 +634,125 @@
 			this.record = [];
 			this.startTime = (new Date()).getTime();
 			this.duration;
+			this.startOffset = 0;
 			this.domElement;
+			this.playing = false;
+			this.timeouts = [];
 			
 			this.pressNote = function(keynum, internal) {
 				var that = this, relativeTime = (new Date()).getTime() - this.startTime;
 				this.record.push(function() {
-					setTimeout(function() {
+					that.timeouts.push(setTimeout(function() {
 						that.instrument.pressNote(keynum, internal);
-					}, relativeTime);
+					}, relativeTime));
 				});
 			};
 			
 			this.createSelfDecayingNote = function(keynum) {
 				var that = this, relativeTime = (new Date()).getTime() - this.startTime;
 				this.record.push(function() {
-					setTimeout(function() {
+					that.timeouts.push((function() {
 						that.instrument.createSelfDecayingNote(keynum);
-					}, relativeTime);
+					}, relativeTime));
 				});
 			};
 			
 			this.releaseNote = function(keynum) {
 				var that = this, relativeTime = (new Date()).getTime() - this.startTime;
 				this.record.push(function() {
-					setTimeout(function() {
+					that.timeouts.push(setTimeout(function() {
 						that.instrument.releaseNote(keynum);
-					}, relativeTime);
+					}, relativeTime));
 				});
 			};
 			
 			this.save = function() {
 				this.duration = (new Date()).getTime() - this.startTime;
 				this.appendToPage();
-			}
-			
-			this.appendToPage = function() {
-				var $dom = $('<div class="recording"></div>');
-				$dom.append('<h3>Recording</h3><p>Length: ' + (this.duration / 1000) + ' seconds</p>');
-				$dom.appendTo('#recordings');
-				
-				var $button = $('<button></button>');
-				$button.appendTo($dom);
-				
-				this.domElement = $dom;
-				
-				var that = this;
-				$button.click(function() {
-					that.play();
-				});
-			}
+			};
 			
 			this.play = function() {
-				this.domElement.addClass('playing');
-				
-				this.instrument.resetControls();
-				
-				for (var i=0; i<this.record.length; i++) {
-					this.record[i]();
-				}
-				
-				this.instrument.releaseAllNotes();
+				if (this.playing) return false;
 				
 				var that = this;
-				setTimeout(function() {
-					that.domElement.removeClass('playing');
-				}, this.duration);
+				
+				this.playing = true;
+				
+				this.timeouts.push(setTimeout(function() {
+					that.domElement.addClass('playing');
+
+					that.instrument.resetControls();
+
+					for (var i=0; i<that.record.length; i++) {
+						that.record[i]();
+					}
+
+					that.instrument.releaseAllNotes();
+
+					that.timeouts.push(setTimeout(function() {
+						that.domElement.removeClass('playing');
+						that.playing = false;
+						$(window).trigger('recording:end');
+					}, that.duration));
+				}, this.startOffset));
+			};
+			
+			this.isPlaying = function() {
+				return this.playing;
+			};
+			
+			this.appendToPage = function() {
+				var $recording = $('<div class="recording"></div>');
+				var $heading = $('<h3>Recording</h3>');
+				var $duration = $('<p>Length: ' + (this.duration / 1000) + ' seconds</p>');
+				var $startOffset = $('<input type="text" val="0" placeholder="start offset in seconds" />');
+				var $button = $('<button></button>');
+				
+				$recording.append($heading);
+				$recording.append($duration);
+				$recording.append($button);
+				$recording.append($startOffset);
+				$recording.appendTo('#recordings');
+				
+				this.domElement = $recording;
+				
+				var that = this;
+				
+				$button.click(function() {
+					if (that.isPlaying()) {
+						that.stop();
+					} else {
+						that.play();
+					}
+				});
+				
+				$startOffset.change(function() {
+					that.setStartOffset($(this).val(), this);
+				});
+			};
+			
+			this.setStartOffset = function(offset, input) {
+				if (offset) {
+					var milli = parseInt(offset * 1000);
+					if (milli && milli > 0) {
+						this.startOffset = milli;
+					} else {
+						this.startOffset = 0;
+						$(input).val('0');
+					}
+				}
+			};
+			
+			this.stop = function() {
+				for (var i=0; i<this.timeouts.length; i++) {
+					clearTimeout(this.timeouts[i]);
+				}
+				
+				this.timeouts = [];
+				this.instrument.releaseAllNotes();
+				this.domElement.removeClass('playing');
+				this.playing = false;
+				$(window).trigger('recording:end');
 			};
 		};
 	}());
@@ -1030,7 +1125,7 @@
 		height: 73px;
 		width: 150px;
 		max-width: 100%;
-		margin: 28px auto 0;
+		margin: 28px 5px 0;
 		border-radius: 3px;
 		background-color: #eee;
 		box-shadow: 0 0 20px -7px #000;
@@ -1039,19 +1134,20 @@
 		display: inline-block;
 		cursor: pointer;
 		outline: none !important;
+		vertical-align: middle;
 	}
 	
 	#record-button:before {
 		content: 'Start Recording';
 	}
 	
-	#record-button.pressed {
+	#record-button.recording {
 		background-color: #ff1234;
 		box-shadow: 0 0 30px 0px #ff1234;
 		color: #fff;
 	}
 	
-	#record-button.pressed:before {
+	#record-button.recording:before {
 		content: 'Stop Recording';
 	}
 	
@@ -1068,10 +1164,21 @@
 		display: inline-block;
 		cursor: pointer;
 		outline: none !important;
+		vertical-align: middle;
 	}
 	
 	#play-all-button:before {
 		content: 'Play All';
+	}
+	
+	#play-all-button.playing {
+		background-color: #ff1234;
+		box-shadow: 0 0 30px 0px #ff1234;
+		color: #fff;
+	}
+	
+	#play-all-button.playing:before {
+		content: '---';
 	}
 	
 	#recordings .recording {
